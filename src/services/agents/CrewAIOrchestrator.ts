@@ -19,10 +19,6 @@ import { gameMonetizationEnforcer, GameMonetizationEnforcer } from './GameMoneti
 import { gameAutomationArchitect, GameAutomationArchitect } from './GameAutomationArchitect';
 import { killSwitchGovernor, KillSwitchGovernor } from './KillSwitchGovernor';
 import {
-  GameConceptOutput,
-  MonetizationOutput,
-  AutomationOutput,
-  KillSwitchOutput,
   GameConceptAnalysis,
   GameArchitecture,
 } from '../../types/agents';
