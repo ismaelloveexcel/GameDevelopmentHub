@@ -313,9 +313,22 @@ export class KillSwitchGovernor implements CrewAIAgent {
     };
 
     const retentionParams = {
-      hasReturnTrigger: true, // Daily puzzles/challenges create return triggers
-      hasProgressionWithoutContent: true, // AI generates content
-      noMultiplayerDependency: true, // Single-player requirement
+      // Prefer validated flags from upstream agents, fall back to conservative defaults
+      hasReturnTrigger: Boolean(
+        (concept as any).hasReturnTrigger ??
+        (automation as any).hasReturnTrigger ??
+        false
+      ),
+      hasProgressionWithoutContent: Boolean(
+        (concept as any).hasProgressionWithoutContent ??
+        (automation as any).hasProgressionWithoutContent ??
+        false
+      ),
+      noMultiplayerDependency: Boolean(
+        (concept as any).noMultiplayerDependency ??
+        (automation as any).noMultiplayerDependency ??
+        false
+      ),
     };
 
     const executionParams = {
