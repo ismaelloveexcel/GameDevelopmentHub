@@ -269,19 +269,45 @@ export class KillSwitchGovernor implements CrewAIAgent {
         `good retention logic (${score.retentionLogic.total}/20), and simple execution (${score.executionSimplicity.total}/15). ` +
         `Proceed with development.`;
     } else if (decision === 'OPTIONAL_TEST') {
+      const improvementAreas: string[] = [];
+      if (score.monetizationStrength.total < 30) {
+        improvementAreas.push('monetization');
+      }
+      if (score.automationContent.total < 25) {
+        improvementAreas.push('automation');
+      }
+      if (score.retentionLogic.total < 15) {
+        improvementAreas.push('retention');
+      }
+      if (score.executionSimplicity.total < 12) {
+        improvementAreas.push('execution simplicity');
+      }
+
       justification = `Score of ${score.finalScore}/100 falls in OPTIONAL TEST range (75-84). ${justificationContext} ` +
-        `Consider a minimal prototype to validate assumptions. Key areas to improve: ` +
-        `${score.monetizationStrength.total < 30 ? 'monetization, ' : ''}` +
-        `${score.automationContent.total < 25 ? 'automation, ' : ''}` +
-        `${score.retentionLogic.total < 15 ? 'retention, ' : ''}` +
-        `${score.executionSimplicity.total < 12 ? 'execution simplicity' : ''}`.replace(/, $/, '.');
+        `Consider a minimal prototype to validate assumptions. ` +
+        (improvementAreas.length > 0
+          ? `Key areas to improve: ${improvementAreas.join(', ')}.`
+          : `No critical improvement areas identified; validate assumptions with a small test.`);
     } else {
+      const majorIssues: string[] = [];
+      if (score.monetizationStrength.total < 25) {
+        majorIssues.push('weak monetization');
+      }
+      if (score.automationContent.total < 20) {
+        majorIssues.push('insufficient automation');
+      }
+      if (score.retentionLogic.total < 10) {
+        majorIssues.push('poor retention logic');
+      }
+      if (score.executionSimplicity.total < 10) {
+        majorIssues.push('complex execution');
+      }
+
       justification = `Score of ${score.finalScore}/100 falls below KILL threshold (<75). ${justificationContext} ` +
-        `Not worth pursuing in current form. Major issues: ` +
-        `${score.monetizationStrength.total < 25 ? 'weak monetization, ' : ''}` +
-        `${score.automationContent.total < 20 ? 'insufficient automation, ' : ''}` +
-        `${score.retentionLogic.total < 10 ? 'poor retention logic, ' : ''}` +
-        `${score.executionSimplicity.total < 10 ? 'complex execution' : ''}`.replace(/, $/, '.');
+        `Not worth pursuing in current form. ` +
+        (majorIssues.length > 0
+          ? `Major issues: ${majorIssues.join(', ')}.`
+          : `Overall concept is weak despite no single dominant issue; consider a substantial redesign.`);
     }
 
     return {
