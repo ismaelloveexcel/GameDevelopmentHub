@@ -259,3 +259,6 @@ export interface VRController {
   rotation: { x: number; y: number; z: number };
   buttons: Record<string, boolean>;
 }
+
+// CrewAI Agent types
+export * from './agents';
