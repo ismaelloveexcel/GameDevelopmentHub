@@ -2,9 +2,17 @@
 
 A detailed comparison of free deployment platforms suitable for React Native + Expo apps.
 
-## 🏆 Winner: Expo EAS + Vercel
+## 🏆 Winner: Expo EAS + GitHub Pages
 
-**Overall Score: 9.5/10**
+**Overall Score: 10/10**
+
+**Why GitHub Pages over Vercel?**
+- ✅ Fully integrated with GitHub - no external accounts
+- ✅ No secrets or API tokens required
+- ✅ Same free tier benefits (CDN, HTTPS, custom domains)
+- ✅ Simpler setup - just enable in repository settings
+- ✅ Native GitHub Actions integration
+- ✅ One less third-party service to manage
 
 ---
 
@@ -59,7 +67,59 @@ eas build --platform android
 
 ---
 
-### 2. ⭐ Vercel - RECOMMENDED FOR WEB
+### 2. ⭐ GitHub Pages - RECOMMENDED FOR WEB
+
+**Website:** https://pages.github.com
+
+#### Pros ✅
+- Completely free for public repositories
+- Fully integrated with GitHub - no external accounts
+- Automatic deployment with GitHub Actions
+- Global CDN via GitHub's infrastructure
+- Automatic HTTPS
+- No API tokens or secrets required
+- Custom domains free
+- Zero configuration needed
+- 1 GB storage, 100 GB bandwidth/month
+- Perfect for static sites
+- Native version control integration
+- No third-party dependencies
+
+#### Cons ❌
+- No mobile app builds (use EAS for mobile)
+- Static sites only (no serverless functions)
+- Must be public repo for free tier (or GitHub Pro for private)
+
+#### Free Tier Details
+- **Sites**: Unlimited per repository
+- **Bandwidth**: 100 GB/month
+- **Storage**: 1 GB site size
+- **Build time**: Unlimited (part of GitHub Actions)
+- **Deployments**: Unlimited
+- **Domains**: Unlimited custom domains
+
+#### Best For
+- Web version of React Native apps
+- Static sites and SPAs
+- Frontend-only applications
+- Open source projects
+- Documentation sites
+
+#### Setup Time
+⏱️ **1 minute** (just enable in settings)
+
+#### Commands
+```bash
+# Automated via GitHub Actions on push to main
+# Just push your code:
+git push origin main
+```
+
+#### Score: 10/10 for Web
+
+---
+
+### 3. Vercel - ALTERNATIVE FOR WEB
 
 **Website:** https://vercel.com
 
@@ -70,32 +130,27 @@ eas build --platform android
 - Automatic HTTPS
 - GitHub integration (auto-deploy on push)
 - Preview deployments for PRs
-- Environment variables management
 - Serverless functions included
 - Custom domains free
-- Zero configuration for React
 - Lightning-fast builds
-- Excellent DX (Developer Experience)
 
 #### Cons ❌
+- Requires external account and API tokens
 - No mobile app builds
 - Commercial use requires Pro plan ($20/month)
-- 100 GB bandwidth limit (soft cap, rarely enforced)
+- One more third-party service to manage
 
 #### Free Tier Details
 - **Projects**: Unlimited
 - **Bandwidth**: 100 GB/month (soft limit)
 - **Build time**: 6000 minutes/month
 - **Deployments**: Unlimited
-- **Team members**: Unlimited viewers
 - **Domains**: Unlimited custom domains
 
 #### Best For
-- Web version of React Native apps
-- Static sites and SPAs
-- JAMstack applications
-- Preview deployments
-- Production web apps
+- Projects requiring serverless functions
+- Teams wanting advanced analytics
+- Preview deployments for PRs
 
 #### Setup Time
 ⏱️ **2 minutes**
@@ -106,11 +161,11 @@ npm install -g vercel
 vercel --prod
 ```
 
-#### Score: 10/10 for Web
+#### Score: 9/10 for Web (loses 1 point for external dependency)
 
 ---
 
-### 3. 🥈 Netlify - WEB ALTERNATIVE
+### 4. Netlify - ALTERNATIVE FOR WEB
 
 **Website:** https://netlify.com
 
@@ -150,7 +205,7 @@ vercel --prod
 
 ---
 
-### 4. 🥉 Firebase Hosting - GOOGLE ECOSYSTEM
+### 5. Firebase Hosting - GOOGLE ECOSYSTEM
 
 **Website:** https://firebase.google.com/products/hosting
 
@@ -186,41 +241,6 @@ vercel --prod
 #### Score: 7/10 for Web
 
 ---
-
-### 5. GitHub Pages - SIMPLE STATIC
-
-**Website:** https://pages.github.com
-
-#### Pros ✅
-- Completely free
-- GitHub integrated
-- Simple setup
-- Custom domains
-- HTTPS included
-- Good for documentation
-
-#### Cons ❌
-- Static only (no serverless functions)
-- No build optimization
-- 1 GB repository size limit
-- 100 GB bandwidth/month (soft limit)
-- Limited to static HTML/CSS/JS
-- No environment variables
-
-#### Free Tier Details
-- **Storage**: 1 GB
-- **Bandwidth**: 100 GB/month (soft limit)
-- **Sites**: Unlimited
-
-#### Best For
-- Documentation sites
-- Very simple static apps
-- Portfolio pages
-
-#### Setup Time
-⏱️ **5 minutes**
-
-#### Score: 5/10 for Web
 
 ---
 
@@ -334,10 +354,10 @@ vercel --prod
 | Platform | Mobile | Web | Free Bandwidth | Build Time | Auto Deploy | CDN | Score |
 |----------|--------|-----|----------------|------------|-------------|-----|-------|
 | **EAS (Mobile)** ⭐ | ✅ | ❌ | N/A | ⏱️ 15-30 min | ✅ | ❌ | 10/10 |
-| **Vercel** ⭐ | ❌ | ✅ | 100 GB | ⚡ 1-5 min | ✅ | ✅ | 10/10 |
-| **Netlify** 🥈 | ❌ | ✅ | 100 GB | ⏱️ 3-7 min | ✅ | ✅ | 8/10 |
-| **Firebase** 🥉 | ❌ | ✅ | 10.5 GB | ⏱️ 5-10 min | ✅ | ✅ | 7/10 |
-| **GitHub Pages** | ❌ | ✅ | 100 GB | ⏱️ 2-5 min | ✅ | ✅ | 5/10 |
+| **GitHub Pages** ⭐ | ❌ | ✅ | 100 GB | ⚡ 1-3 min | ✅ | ✅ | 10/10 |
+| **Vercel** 🥈 | ❌ | ✅ | 100 GB | ⚡ 1-5 min | ✅ | ✅ | 9/10 |
+| **Netlify** | ❌ | ✅ | 100 GB | ⏱️ 3-7 min | ✅ | ✅ | 8/10 |
+| **Firebase** | ❌ | ✅ | 10.5 GB | ⏱️ 5-10 min | ✅ | ✅ | 7/10 |
 | **Render** | ❌ | ✅ | 100 GB | ⏱️ 5-10 min | ✅ | ✅ | 6/10 |
 | **Railway** | ❌ | ✅ | N/A | ⏱️ 5-10 min | ✅ | ❌ | 6/10 |
 | **Replit** | ❌ | ✅ | N/A | ⏱️ 10-20 min | ✅ | ❌ | 4/10 |
@@ -346,28 +366,29 @@ vercel --prod
 
 ## 🎯 Decision Matrix
 
-### Choose Expo EAS + Vercel If:
+### Choose Expo EAS + GitHub Pages If:
 - ✅ You have a React Native/Expo app
 - ✅ You need both mobile and web deployment
 - ✅ You want production-ready infrastructure
 - ✅ You need OTA updates
-- ✅ You want zero configuration
+- ✅ You want zero external dependencies
+- ✅ You prefer full GitHub integration
 - ✅ You need automatic CI/CD
 
+### Choose Vercel If:
+- ✅ You need serverless functions
+- ✅ You want preview deployments for PRs
+- ✅ You need advanced analytics
+
 ### Choose Netlify If:
-- ✅ You prefer an alternative to Vercel
 - ✅ You need form handling
 - ✅ You want split testing features
+- ✅ You prefer an alternative to Vercel
 
 ### Choose Firebase If:
 - ✅ You're already using Firebase services
 - ✅ You need Firebase Auth/Firestore
 - ✅ You're in the Google ecosystem
-
-### Choose GitHub Pages If:
-- ✅ You only need simple static hosting
-- ✅ You want the simplest possible setup
-- ✅ Your app has no dynamic features
 
 ### Avoid These For Production:
 - ❌ Replit (better for development)
@@ -379,9 +400,9 @@ vercel --prod
 ## 💰 Cost Analysis
 
 ### Free Forever Options
-1. **Vercel**: Truly unlimited for personal projects
-2. **Netlify**: 100 GB/month bandwidth
-3. **GitHub Pages**: 100 GB/month bandwidth
+1. **GitHub Pages**: 100 GB/month bandwidth, fully integrated
+2. **Vercel**: Truly unlimited for personal projects
+3. **Netlify**: 100 GB/month bandwidth
 4. **EAS**: Unlimited builds (slower queue)
 
 ### Will Eventually Cost Money
@@ -392,7 +413,7 @@ vercel --prod
 ### When You'll Need to Pay
 - **iOS deployment**: $99/year (Apple Developer)
 - **Priority builds**: $29/month (EAS)
-- **Commercial use**: $20/month (Vercel Pro)
+- **Commercial use**: $20/month (Vercel Pro, optional)
 - **High traffic**: Based on usage
 
 ---
@@ -403,8 +424,17 @@ vercel --prod
 
 ### Use This Combo:
 ```
-Expo EAS (Mobile) + Vercel (Web) = Perfect Solution
+Expo EAS (Mobile) + GitHub Pages (Web) = Perfect Solution
 ```
+
+### Why This Combo Wins:
+- ✅ **100% Free** - No external accounts beyond GitHub
+- ✅ **Fully Integrated** - Everything in one place
+- ✅ **Zero Configuration** - Works out of the box
+- ✅ **Production Ready** - Enterprise-grade infrastructure
+- ✅ **Automatic CI/CD** - Push to deploy
+- ✅ **Global CDN** - Fast worldwide
+- ✅ **No Secrets Required** - GitHub Pages needs no API tokens
 
 ### Why?
 1. **Complete coverage**: Mobile AND web
@@ -416,11 +446,15 @@ Expo EAS (Mobile) + Vercel (Web) = Perfect Solution
 
 ### Quick Start:
 ```bash
-# Install tools
-npm install -g eas-cli vercel
+# Install EAS CLI
+npm install -g eas-cli
 
-# Deploy web
-npm run deploy:vercel
+# Setup GitHub Pages
+# 1. Go to repo Settings → Pages
+# 2. Set Source to "GitHub Actions"
+
+# Deploy web (automatic on push to main)
+git push origin main
 
 # Deploy mobile
 npm run eas:build:android
@@ -431,7 +465,8 @@ npm run eas:build:android
 ## 📚 Additional Resources
 
 - [EAS Documentation](https://docs.expo.dev/eas/)
-- [Vercel Documentation](https://vercel.com/docs)
+- [GitHub Pages Documentation](https://docs.github.com/pages)
+- [GitHub Actions Documentation](https://docs.github.com/actions)
 - [Expo Forums](https://forums.expo.dev/)
 - [Main Deployment Guide](./DEPLOYMENT.md)
 - [Quick Deploy Guide](./QUICK_DEPLOY_GUIDE.md)
