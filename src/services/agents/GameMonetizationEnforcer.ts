@@ -67,7 +67,12 @@ export class GameMonetizationEnforcer implements CrewAIAgent {
    * Check if monetization model is allowed
    */
   private isAllowedModel(model: MonetizationModel): boolean {
-    return this.allowedMonetizationModels.includes(model);
+    for (const allowed of this.allowedMonetizationModels) {
+      if (allowed === model) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
