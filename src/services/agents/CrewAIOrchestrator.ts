@@ -64,57 +64,102 @@ export class CrewAIOrchestrator {
   /**
    * Run full game concept analysis through all 4 agents
    */
+  private validateGameConceptInput(conceptInput: GameConceptInput): void {
+    if (!conceptInput) {
+      throw new Error('conceptInput is required for game concept analysis.');
+    }
+
+    const { gameConcept, targetAudience, coreGameLoop, whatAIGenerates, whyUsersPay } = conceptInput;
+
+    if (!Array.isArray(coreGameLoop)) {
+      throw new Error('coreGameLoop must be an array of steps.');
+    }
+
+    if (coreGameLoop.length === 0) {
+      throw new Error('coreGameLoop must contain at least one step.');
+    }
+
+    // GameConceptSniper expects at most 3 steps in the coreGameLoop.
+    if (coreGameLoop.length > 3) {
+      throw new Error('coreGameLoop must contain at most 3 steps to satisfy GameConceptSniper requirements.');
+    }
+
+    if (!gameConcept || !gameConcept.trim()) {
+      throw new Error('gameConcept is required and cannot be empty.');
+    }
+
+    if (!targetAudience || !targetAudience.trim()) {
+      throw new Error('targetAudience is required and cannot be empty.');
+    }
+
+    if (!whatAIGenerates || !whatAIGenerates.trim()) {
+      throw new Error('whatAIGenerates is required and cannot be empty.');
+    }
+
+    if (!whyUsersPay || !whyUsersPay.trim()) {
+      throw new Error('whyUsersPay is required and cannot be empty.');
+    }
+  }
+
   public analyzeGameConcept(
     conceptInput: GameConceptInput,
     monetizationInput: MonetizationInput,
     automationInput: AutomationInput
   ): GameConceptAnalysis {
-    // Agent 1: Game Concept Sniper
-    const concept = this.conceptSniper.analyzeGameConcept(
-      conceptInput.gameConcept,
-      conceptInput.targetAudience,
-      conceptInput.coreGameLoop,
-      conceptInput.whatAIGenerates,
-      conceptInput.whyUsersPay
-    );
+    // Validate inputs against agent requirements before processing
+    this.validateGameConceptInput(conceptInput);
 
-    // Agent 2: Game Monetization Enforcer
-    const monetization = this.monetizationEnforcer.analyzeMonetization(
-      monetizationInput.pricePointAED,
-      monetizationInput.expectedConversionRate,
-      monetizationInput.whyUsersPay,
-      monetizationInput.churnLevel,
-      monetizationInput.churnReason
-    );
+    try {
+      // Agent 1: Game Concept Sniper
+      const concept = this.conceptSniper.analyzeGameConcept(
+        conceptInput.gameConcept,
+        conceptInput.targetAudience,
+        conceptInput.coreGameLoop,
+        conceptInput.whatAIGenerates,
+        conceptInput.whyUsersPay
+      );
 
-    // Agent 3: Game Automation Architect
-    const automation = this.automationArchitect.analyzeAutomation(
-      automationInput.intake,
-      automationInput.aiProcessing,
-      automationInput.gameLogic,
-      automationInput.output,
-      automationInput.humanInterventionRequired,
-      automationInput.humanInterventionReason
-    );
+      // Agent 2: Game Monetization Enforcer
+      const monetization = this.monetizationEnforcer.analyzeMonetization(
+        monetizationInput.pricePointAED,
+        monetizationInput.expectedConversionRate,
+        monetizationInput.whyUsersPay,
+        monetizationInput.churnLevel,
+        monetizationInput.churnReason
+      );
 
-    // Agent 4: Kill-Switch Governor
-    const killSwitch = this.killSwitchGovernor.analyzeFromAgentOutputs(
-      concept,
-      monetization,
-      automation
-    );
+      // Agent 3: Game Automation Architect
+      const automation = this.automationArchitect.analyzeAutomation(
+        automationInput.intake,
+        automationInput.aiProcessing,
+        automationInput.gameLogic,
+        automationInput.output,
+        automationInput.humanInterventionRequired,
+        automationInput.humanInterventionReason
+      );
 
-    // Generate reference architecture
-    const architecture = this.generateReferenceArchitecture();
+      // Agent 4: Kill-Switch Governor
+      const killSwitch = this.killSwitchGovernor.analyzeFromAgentOutputs(
+        concept,
+        monetization,
+        automation
+      );
 
-    return {
-      concept,
-      monetization,
-      automation,
-      killSwitch,
-      architecture,
-      timestamp: new Date(),
-    };
+      // Generate reference architecture
+      const architecture = this.generateReferenceArchitecture();
+
+      return {
+        concept,
+        monetization,
+        automation,
+        killSwitch,
+        architecture,
+        timestamp: new Date(),
+      };
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to analyze game concept: ${message}`);
+    }
   }
 
   /**
