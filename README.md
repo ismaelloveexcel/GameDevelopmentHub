@@ -5,9 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![React Native](https://img.shields.io/badge/React%20Native-0.72-61DAFB.svg)](https://reactnative.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1-blue.svg)](https://www.typescriptlang.org/)
-[![Deploy Web](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/deploy-web.yml)
-[![Build Mobile](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/build-mobile.yml/badge.svg)](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/build-mobile.yml)
-[![CI](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/ci.yml)
+[![Deploy Web](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/deploy-web.yml)
+[![Build Mobile](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/build-mobile.yml/badge.svg)](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/build-mobile.yml)
+[![CI](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/ci.yml/badge.svg)](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/ci.yml)
 
 ## 🌟 Features
 
@@ -235,45 +235,54 @@ npm run build:android
 
 ## 🚀 Deployment
 
-### ⭐ NEW: Automated Deployment with GitHub Actions
+### ⭐ Automated Deployment with GitHub Pages
 
-GameForge Mobile now includes **automated CI/CD pipelines** using GitHub Actions - the free portal within GitHub!
+GameForge Mobile is deployed using **GitHub Pages** - a free static site hosting service integrated directly into GitHub!
 
 **What you get:**
-- ✅ **Automatic web deployment** to Vercel on every push to `main`
-- ✅ **Automated mobile builds** with Expo EAS
+- ✅ **Automatic web deployment** to GitHub Pages on every push to `main`
+- ✅ **100% FREE** hosting for public repositories
+- ✅ **Built-in GitHub integration** - no external services needed
 - ✅ **Continuous integration** with linting and testing
-- ✅ **Pull request previews** for testing before merge
-- ✅ **100% FREE** for public repositories
+- ✅ **Global CDN** for fast loading worldwide
+
+**How it works:**
+1. Push your changes to the `main` branch
+2. GitHub Actions automatically builds the web app
+3. The build is deployed to GitHub Pages
+4. Your app is live at `https://ismaelloveexcel.github.io/GameDevelopmentHub/`
 
 **Quick Setup:**
-1. Configure secrets in GitHub (VERCEL_TOKEN, EXPO_TOKEN)
-2. Push to `main` branch
-3. Watch automated deployments at `https://github.com/ismaelloveexcel/gameforge-mobile/actions`
+1. Go to your repository Settings → Pages
+2. Set Source to "GitHub Actions"
+3. Push to `main` branch
+4. Watch automated deployments at `https://github.com/ismaelloveexcel/GameDevelopmentHub/actions`
 
 📖 **[Complete GitHub Actions Setup Guide](docs/GITHUB_ACTIONS_DEPLOYMENT.md)**
 
 ---
 
-### Manual Deployment: Expo EAS + Vercel
+### Manual Deployment
 
 For manual deployments or local testing:
 
 **Quick Deploy:**
 ```bash
-# Web version (Free)
-npm run build:web && vercel --prod
+# Web version to GitHub Pages (Free)
+npm run build:web
+npm run deploy:gh-pages
 
-# Android APK (Free)
+# Android APK (Free with EAS)
 eas build --platform android --profile production
 ```
 
-**Why this combination?**
-- ✅ 100% Free tier available
-- ✅ Native mobile app support (iOS & Android)
-- ✅ Web deployment with global CDN
-- ✅ Automatic CI/CD from GitHub
-- ✅ Zero configuration needed
+**Why GitHub Pages?**
+- ✅ 100% Free for public repositories
+- ✅ Integrated with GitHub - no external accounts needed
+- ✅ Automatic CI/CD from GitHub Actions
+- ✅ Global CDN for fast loading
+- ✅ Custom domain support
+- ✅ HTTPS by default
 
 **See detailed guides:**
 - 🤖 [GitHub Actions Deployment](docs/GITHUB_ACTIONS_DEPLOYMENT.md) - Automated CI/CD setup
