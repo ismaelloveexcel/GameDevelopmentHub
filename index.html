@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameForge Mobile - AI-Powered Game Development Hub</title>
+    <meta name="description" content="Automated game development platform for UAE market - Create games with AI agents">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Dashboard Cards */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .card-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .card-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Workflow Visual */
+        .workflow {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Statistics */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .action-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .action-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .action-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Game Ideas */
+        .game-ideas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid var(--light);
+            transition: all 0.3s;
+        }
+
+        .game-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .game-score {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav {
+                flex-direction: column;
+            }
+
+            .workflow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Alert Box */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    🎮 GameForge Mobile
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#workflow">How It Works</a></li>
+                    <li><a href="#opportunities">Game Ideas</a></li>
+                    <li><a href="#setup">Setup Guide</a></li>
+                    <li><a href="docs/AI_AUTOMATION_STRATEGY.md">Strategy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🚀 AI-Powered Game Development</h1>
+            <p>Automated UAE gaming side hustle - Let AI agents do the heavy lifting while you focus on strategy</p>
+            <div class="cta-buttons">
+                <a href="docs/QUICK_START_AUTOMATION.md" class="btn btn-primary">🚀 Quick Start Guide</a>
+                <a href="#dashboard" class="btn btn-secondary">📊 View Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Alert -->
+            <div class="alert alert-success">
+                <span class="alert-icon">✅</span>
+                <div>
+                    <strong>Automation Active!</strong> Daily market research runs at 6 AM UAE time. Next run: Tomorrow morning.
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <section class="section">
+                <h2 class="section-title">📈 Your Side Hustle at a Glance</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">AI Agents Working</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                        <div class="stat-number">2-3h</div>
+                        <div class="stat-label">Weekly Time Needed</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div class="stat-number">$3-5K</div>
+                        <div class="stat-label">Target Monthly Income</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <div class="stat-number">4-6</div>
+                        <div class="stat-label">Months to Break-even</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Cards -->
+            <section class="section" id="dashboard">
+                <h2 class="section-title">🎯 Control Center</h2>
+                <p class="section-subtitle">Easy access to everything you need - no coding required!</p>
+                
+                <div class="dashboard">
+                    <!-- Market Research -->
+                    <div class="card">
+                        <div class="card-icon">🔍</div>
+                        <h3 class="card-title">Market Research</h3>
+                        <p class="card-description">AI scans UAE gaming trends, festivals, and opportunities daily</p>
+                        <span class="card-status status-active">✓ Active</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="automation_output/opportunities/" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Results</a>
+                        </div>
+                    </div>
+
+                    <!-- Business Validation -->
+                    <div class="card">
+                        <div class="card-icon">💼</div>
+                        <h3 class="card-title">Business Validator</h3>
+                        <p class="card-description">Automatic ROI calculation and go/no-go decisions</p>
+                        <span class="card-status status-active">✓ Active</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="automation_output/validations/" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Validations</a>
+                        </div>
+                    </div>
+
+                    <!-- Game Builder -->
+                    <div class="card">
+                        <div class="card-icon">🏗️</div>
+                        <h3 class="card-title">Game Builder</h3>
+                        <p class="card-description">Automatically generates game code for approved ideas</p>
+                        <span class="card-status status-pending">⏳ Waiting for approval</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="prototypes/" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Prototypes</a>
+                        </div>
+                    </div>
+
+                    <!-- Documentation -->
+                    <div class="card">
+                        <div class="card-icon">📚</div>
+                        <h3 class="card-title">Documentation</h3>
+                        <p class="card-description">Complete guides and strategy documents</p>
+                        <span class="card-status status-info">📖 27,000+ words</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="docs/" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Browse Docs</a>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Actions -->
+                    <div class="card">
+                        <div class="card-icon">⚙️</div>
+                        <h3 class="card-title">Automation Status</h3>
+                        <p class="card-description">Daily automation runs at 6 AM UAE time via GitHub Actions</p>
+                        <span class="card-status status-active">✓ Scheduled</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="../../actions" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Actions</a>
+                        </div>
+                    </div>
+
+                    <!-- Setup Guide -->
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h3 class="card-title">Quick Setup</h3>
+                        <p class="card-description">30-minute setup guide to get started</p>
+                        <span class="card-status status-info">📖 Step-by-step</span>
+                        <div style="margin-top: 1rem;">
+                            <a href="docs/QUICK_START_AUTOMATION.md" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Start Setup</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workflow -->
+            <section class="section" id="workflow">
+                <h2 class="section-title">⚡ How It Works</h2>
+                <p class="section-subtitle">Fully automated workflow - minimal manual intervention required</p>
+                
+                <div class="workflow">
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">🔍 Daily Market Research (6 AM UAE)</div>
+                                <div class="step-description">AI agent scans UAE gaming trends, festivals, and opportunities automatically</div>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">💼 Business Validation</div>
+                                <div class="step-description">Calculate ROI, score 0-100, assess risks and revenue potential</div>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">🤖 Automatic Decision</div>
+                                <div class="step-description">Score ≥75: Auto-build | Score 60-74: Flag for review | Score <60: Skip</div>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">🏗️ Build & Test (If Approved)</div>
+                                <div class="step-description">Polish idea → Review tools → Generate code → Test quality</div>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">📦 Ready for Launch</div>
+                                <div class="step-description">Game prototype saved to prototypes/ - ready for your review and app store submission</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin-top: 2rem;">
+                    <span class="alert-icon">💡</span>
+                    <div>
+                        <strong>Your Role:</strong> Review weekly results (2-3 hours), approve flagged opportunities, submit apps to store, monitor performance. That's it!
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="section">
+                <h2 class="section-title">⚡ Quick Actions</h2>
+                <div class="quick-actions">
+                    <a href="docs/QUICK_START_AUTOMATION.md" class="action-btn action-primary">
+                        🚀 Setup Guide
+                    </a>
+                    <a href="automation_output/" class="action-btn action-success">
+                        📊 View Results
+                    </a>
+                    <a href="scripts/uae_automation.py" class="action-btn action-warning">
+                        ⚙️ Automation Script
+                    </a>
+                    <a href="../../actions" class="action-btn action-primary">
+                        🔄 GitHub Actions
+                    </a>
+                </div>
+            </section>
+
+            <!-- Top Game Opportunities -->
+            <section class="section" id="opportunities">
+                <h2 class="section-title">🎮 Top UAE Game Opportunities</h2>
+                <p class="section-subtitle">AI-identified opportunities ranked by potential</p>
+                
+                <div class="game-ideas">
+                    <div class="game-card">
+                        <span class="game-score">90/100</span>
+                        <h3 class="game-title">🌙 Ramadan Charity Runner</h3>
+                        <p class="game-description">Collect donations, avoid obstacles. Launch 30 days before Ramadan.</p>
+                        <div class="game-tags">
+                            <span class="tag">Festival</span>
+                            <span class="tag">Educational</span>
+                            <span class="tag">$500-1K/month</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="game-score" style="background: #3b82f6;">88/100</span>
+                        <h3 class="game-title">📚 Arabic Alphabet Adventure</h3>
+                        <p class="game-description">Kids learn Arabic letters through interactive games.</p>
+                        <div class="game-tags">
+                            <span class="tag">Education</span>
+                            <span class="tag">Kids</span>
+                            <span class="tag">B2B Licensing</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="game-score" style="background: #8b5cf6;">85/100</span>
+                        <h3 class="game-title">🏛️ Dubai Landmarks Match-3</h3>
+                        <p class="game-description">Match iconic Dubai landmarks in puzzle game.</p>
+                        <div class="game-tags">
+                            <span class="tag">Tourism</span>
+                            <span class="tag">Cultural</span>
+                            <span class="tag">Sponsorships</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="game-score" style="background: #ec4899;">82/100</span>
+                        <h3 class="game-title">🇦🇪 UAE National Day Quiz</h3>
+                        <p class="game-description">UAE history and culture trivia. Launch Nov 1.</p>
+                        <div class="game-tags">
+                            <span class="tag">Seasonal</span>
+                            <span class="tag">Educational</span>
+                            <span class="tag">Dec 2</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="game-score" style="background: #10b981;">78/100</span>
+                        <h3 class="game-title">💆 Stress Relief Bubble Pop</h3>
+                        <p class="game-description">Calming gameplay with Islamic geometric patterns.</p>
+                        <div class="game-tags">
+                            <span class="tag">Adults</span>
+                            <span class="tag">Wellness</span>
+                            <span class="tag">Ads</span>
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="game-score" style="background: #f59e0b;">75/100</span>
+                        <h3 class="game-title">🎁 Eid Gift Delivery</h3>
+                        <p class="game-description">Deliver Eid gifts in endless runner style.</p>
+                        <div class="game-tags">
+                            <span class="tag">Festival</span>
+                            <span class="tag">Seasonal</span>
+                            <span class="tag">Family</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="docs/AI_AUTOMATION_STRATEGY.md#-specific-game-ideas-for-uae-market" class="btn btn-primary">View All Ideas</a>
+                </div>
+            </section>
+
+            <!-- Setup Guide Preview -->
+            <section class="section" id="setup">
+                <h2 class="section-title">🚀 Getting Started</h2>
+                <p class="section-subtitle">Set up in 30 minutes - no coding required!</p>
+                
+                <div class="workflow">
+                    <div style="background: white; padding: 2rem; border-radius: 8px;">
+                        <h3 style="margin-bottom: 1rem;">📋 Setup Checklist</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+                                <input type="checkbox" style="width: 20px; height: 20px;">
+                                <span>1. Get OpenAI API key from <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+                                <input type="checkbox" style="width: 20px; height: 20px;">
+                                <span>2. Add API key to GitHub Secrets (Settings → Secrets → Actions)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+                                <input type="checkbox" style="width: 20px; height: 20px;">
+                                <span>3. Test locally: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 4px;">pip install crewai langchain</code></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+                                <input type="checkbox" style="width: 20px; height: 20px;">
+                                <span>4. Run test: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 4px;">python scripts/uae_automation.py --mode research</code></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+                                <input type="checkbox" style="width: 20px; height: 20px;">
+                                <span>5. ✅ Done! Automation runs daily at 6 AM UAE automatically</span>
+                            </label>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <a href="docs/QUICK_START_AUTOMATION.md" class="btn btn-primary">📖 Full Setup Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources -->
+            <section class="section">
+                <h2 class="section-title">📚 Resources</h2>
+                <div class="dashboard">
+                    <div class="card">
+                        <h3 class="card-title">📖 Documentation</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="docs/QUICK_START_AUTOMATION.md" style="color: var(--primary); text-decoration: none;">→ Quick Start Guide</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="docs/AI_AUTOMATION_STRATEGY.md" style="color: var(--primary); text-decoration: none;">→ Complete Strategy (17K words)</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="README.md" style="color: var(--primary); text-decoration: none;">→ README</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">🤖 AI Agents</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href=".github/agents/uae-market-researcher.agent.md" style="color: var(--primary); text-decoration: none;">→ UAE Market Researcher</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href=".github/agents/business-validator.agent.md" style="color: var(--primary); text-decoration: none;">→ Business Validator</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href=".github/agents/" style="color: var(--primary); text-decoration: none;">→ All Agents</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">⚙️ Automation</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="scripts/uae_automation.py" style="color: var(--primary); text-decoration: none;">→ Automation Script</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href=".github/workflows/daily-automation.yml" style="color: var(--primary); text-decoration: none;">→ GitHub Actions Workflow</a>
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">
+                                <a href="../../actions" style="color: var(--primary); text-decoration: none;">→ View Actions Logs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="LICENSE">License</a>
+                <a href="CONTRIBUTING.md">Contributing</a>
+                <a href="../../issues">Issues</a>
+                <a href="../../discussions">Discussions</a>
+            </div>
+            <p style="opacity: 0.8; margin-top: 1rem;">
+                Made with ❤️ by GameForge Team | Create games, not code
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

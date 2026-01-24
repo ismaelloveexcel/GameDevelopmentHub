@@ -9,6 +9,17 @@
 [![Build Mobile](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/build-mobile.yml/badge.svg)](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/build-mobile.yml)
 [![CI](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/ismaelloveexcel/gameforge-mobile/actions/workflows/ci.yml)
 
+## 🌐 [**Open Landing Page**](index.html) - Easy Management Dashboard
+
+**New!** Access the user-friendly landing page for easy repository management - no technical knowledge required! The landing page provides:
+- 📊 Visual dashboard with all automation status
+- ⚡ Quick access to all features and results  
+- 🎮 Top game opportunities at a glance
+- 🚀 Interactive setup checklist
+- 📱 Mobile-friendly interface
+
+👉 **[Click here to open the landing page](index.html)** or view [setup instructions](LANDING_PAGE.md)
+
 ## 🌟 Features
 
 ### Core Capabilities
