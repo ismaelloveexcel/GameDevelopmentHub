@@ -67,3 +67,6 @@ export type {
   DeploymentLayer,
   GameConceptAnalysis,
 } from '../../types/agents';
+
+// Re-export constants
+export { DEFAULT_KILL_SWITCH_RULES } from '../../types/agents';

@@ -118,11 +118,19 @@ export interface KillSwitchOutput {
 }
 
 export interface KillSwitchDecisionRule {
-  buildThreshold: 85;
-  optionalTestMin: 75;
-  optionalTestMax: 84;
-  killThreshold: 74;
+  readonly buildThreshold: number;
+  readonly optionalTestMin: number;
+  readonly optionalTestMax: number;
+  readonly killThreshold: number;
 }
+
+// Default decision thresholds
+export const DEFAULT_KILL_SWITCH_RULES: KillSwitchDecisionRule = {
+  buildThreshold: 85,
+  optionalTestMin: 75,
+  optionalTestMax: 84,
+  killThreshold: 74,
+};
 
 // Reference Game Architecture Types
 export interface GameArchitecture {

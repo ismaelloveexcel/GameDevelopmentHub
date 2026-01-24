@@ -16,6 +16,7 @@ import {
   GameConceptOutput,
   MonetizationOutput,
   AutomationOutput,
+  DEFAULT_KILL_SWITCH_RULES,
 } from '../../types/agents';
 
 export class KillSwitchGovernor implements CrewAIAgent {
@@ -39,12 +40,7 @@ export class KillSwitchGovernor implements CrewAIAgent {
     'Score >= 85 = BUILD',
   ];
 
-  public readonly decisionRules: KillSwitchDecisionRule = {
-    buildThreshold: 85,
-    optionalTestMin: 75,
-    optionalTestMax: 84,
-    killThreshold: 74,
-  };
+  public readonly decisionRules: KillSwitchDecisionRule = DEFAULT_KILL_SWITCH_RULES;
 
   /**
    * Score monetization strength (max 35 points)

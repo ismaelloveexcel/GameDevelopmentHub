@@ -64,6 +64,18 @@ export class GameMonetizationEnforcer implements CrewAIAgent {
   }
 
   /**
+   * Check if monetization model is allowed
+   */
+  private isAllowedModel(model: MonetizationModel): boolean {
+    for (const allowed of this.allowedMonetizationModels) {
+      if (allowed === model) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Validate monetization strategy
    */
   public validateMonetization(validation: MonetizationValidation): {
@@ -73,7 +85,7 @@ export class GameMonetizationEnforcer implements CrewAIAgent {
     const rejectionReasons: string[] = [];
 
     // Check monetization model
-    if (this.allowedMonetizationModels.indexOf(validation.model) < 0) {
+    if (!this.isAllowedModel(validation.model)) {
       rejectionReasons.push(`Invalid monetization model. Allowed: ${this.allowedMonetizationModels.join(', ')}`);
     }
 

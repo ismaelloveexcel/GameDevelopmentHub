@@ -158,6 +158,19 @@ export class GameAutomationArchitect implements CrewAIAgent {
   }
 
   /**
+   * Helper function to check if text contains any of the given keywords
+   */
+  private containsKeyword(text: string, keywords: string[]): boolean {
+    const lowerText = text.toLowerCase();
+    for (const keyword of keywords) {
+      if (lowerText.indexOf(keyword) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Estimate automation score from descriptions
    */
   private estimateAutomationScore(
@@ -169,20 +182,17 @@ export class GameAutomationArchitect implements CrewAIAgent {
     let score = 0;
 
     // Check intake automation keywords
-    const intakeLower = intake.toLowerCase();
-    if (intakeLower.indexOf('auto') >= 0 || intakeLower.indexOf('input') >= 0 || intakeLower.indexOf('api') >= 0) {
+    if (this.containsKeyword(intake, ['auto', 'input', 'api'])) {
       score += 20;
     }
 
     // Check AI processing keywords
-    const aiLower = aiProcessing.toLowerCase();
-    if (aiLower.indexOf('ai') >= 0 || aiLower.indexOf('generate') >= 0 || aiLower.indexOf('llm') >= 0 || aiLower.indexOf('automatic') >= 0) {
+    if (this.containsKeyword(aiProcessing, ['ai', 'generate', 'llm', 'automatic'])) {
       score += 30;
     }
 
     // Check game logic keywords
-    const logicLower = gameLogic.toLowerCase();
-    if (logicLower.indexOf('rule') >= 0 || logicLower.indexOf('algorithm') >= 0 || logicLower.indexOf('calculate') >= 0) {
+    if (this.containsKeyword(gameLogic, ['rule', 'algorithm', 'calculate'])) {
       score += 25;
     }
 
