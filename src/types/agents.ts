@@ -191,7 +191,7 @@ export interface PaymentsLayer {
   provider: 'Stripe' | 'Paddle';
   model: 'monthly_subscription';
   optionalPacks: boolean;
-  maxTrialDays: 7;
+  maxTrialDays: number;
 }
 
 export interface DeploymentLayer {
