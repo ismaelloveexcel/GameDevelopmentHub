@@ -319,18 +319,46 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## AI Agents for Automated Game Workflow
 
-Enhanced with GitHub Copilot custom agents and local CrewAI scripting for chaining tasks. You generate ideas (e.g., via issues) → Agents handle the rest.
+Enhanced with GitHub Copilot custom agents and CrewAI automation for **fully automated game development with minimal manual intervention**. Perfect for side hustles targeting the UAE gaming market.
 
-### Agents
-1. **Idea Polisher**: Refines ideas, integrating with Genie AI personalities.
-2. **Repo Reviewer**: Finds open-source game creator repos/tools (e.g., for React Native/Expo).
-3. **Game Builder**: Generates TS/JS code using your templates/engines.
-4. **Game Tester**: Tests for mobile compat, bugs via sims.
+### 🤖 Core Agents
+1. **UAE Market Researcher**: Automatically scans UAE gaming trends, festivals, and opportunities daily
+2. **Business Validator**: Assesses commercial viability and ROI before building
+3. **Idea Polisher**: Refines concepts, integrating with Genie AI personalities
+4. **Repo Reviewer**: Finds open-source game creator tools (React Native/Expo)
+5. **Game Builder**: Generates production-ready TS/JS code using templates/engines
+6. **Game Tester**: Tests for mobile compatibility, bugs, and performance
 
-### Workflow Chain
-Idea → Polish → Review repos for tools → Build code → Test → Output to prototypes/.
+### ⚡ Automated Workflow
+```
+Daily @ 6 AM UAE → Market Research → Business Validation → Auto-Approve (score ≥75)
+→ Polish Idea → Build Game → Test → Deploy to prototypes/ → Ready for Launch
+```
 
-### Local Simulation
-Run `python scripts/agent_chain.py` for offline chaining (outputs to console/files).
+**Time Required:** 2-3 hours/week for reviews and approvals
+**Goal:** $3K-5K/month passive income within 6 months
 
-**Top Reviewed Repos (Starter)**: FlowiseAI (visual AI for game logic), awesome-llm-apps (game agents), TriggerDev (workflows).
+### 📚 Documentation
+- **[Quick Start Guide](docs/QUICK_START_AUTOMATION.md)** - Set up in 30 minutes
+- **[Complete Strategy](docs/AI_AUTOMATION_STRATEGY.md)** - Full automation blueprint
+- **[Agent Configurations](.github/agents/)** - Customize agent behaviors
+
+### 🚀 Quick Start
+```bash
+# 1. Install dependencies
+pip install crewai langchain langchain-openai
+
+# 2. Configure OpenAI API key
+# Add OPENAI_API_KEY to GitHub Secrets or .env file
+
+# 3. Test automation
+python scripts/uae_automation.py --mode research
+
+# 4. Enable daily automation
+# GitHub Actions runs automatically at 6 AM UAE time
+```
+
+### 🎯 UAE Market Focus
+Specializes in: Ramadan/Eid games, Arabic learning, Dubai landmarks, kids education, stress relief, corporate training, cultural celebrations.
+
+**Top Opportunities:** Festival-themed games, educational content, casual puzzles, cultural experiences.

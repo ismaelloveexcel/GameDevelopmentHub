@@ -1,0 +1,122 @@
+name: Daily UAE Game Automation
+
+on:
+  schedule:
+    # Runs daily at 3:00 AM UTC (6:00 AM UAE time)
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # Allow manual trigger
+    inputs:
+      mode:
+        description: 'Automation mode'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - research
+          - validate
+
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install crewai langchain langchain-openai
+          pip install beautifulsoup4 requests pandas python-dotenv
+      
+      - name: Run automation pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scripts/uae_automation.py --mode ${{ github.event.inputs.mode || 'full' }}
+      
+      - name: Upload automation results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: automation-output-${{ github.run_number }}
+          path: automation_output/
+          retention-days: 30
+      
+      - name: Create opportunity issues
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Check if opportunities were found
+            const opportunitiesDir = 'automation_output/opportunities';
+            if (!fs.existsSync(opportunitiesDir)) {
+              console.log('No opportunities directory found');
+              return;
+            }
+            
+            // Find latest research file
+            const files = fs.readdirSync(opportunitiesDir)
+              .filter(f => f.startsWith('research_'))
+              .sort()
+              .reverse();
+            
+            if (files.length === 0) {
+              console.log('No research files found');
+              return;
+            }
+            
+            const latestFile = path.join(opportunitiesDir, files[0]);
+            const data = JSON.parse(fs.readFileSync(latestFile, 'utf8'));
+            
+            // Create issue for high-scoring opportunities
+            // This would parse the research results and create GitHub issues
+            console.log('Automation results processed');
+      
+      - name: Send notification
+        if: always()
+        run: |
+          echo "Automation complete. Check artifacts for results."
+          # Add Slack/Discord webhook notification here if configured
+          # curl -X POST -H 'Content-type: application/json' \
+          #   --data '{"text":"Daily UAE automation complete"}' \
+          #   ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  weekly-report:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 3 * * 0'  # Only on Sundays
+    needs: automation
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Generate weekly report
+        run: |
+          echo "Generating weekly performance report..."
+          # Add weekly summary generation logic
+          
+      - name: Create summary issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Weekly Automation Report - ${new Date().toISOString().split('T')[0]}`,
+              body: '## Weekly Performance Summary\n\nAutomated report of game opportunities and pipeline performance.',
+              labels: ['automation', 'weekly-report']
+            });
