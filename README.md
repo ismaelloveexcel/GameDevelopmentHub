@@ -264,15 +264,14 @@ GameForge Mobile is deployed using **GitHub Pages** - a free static site hosting
 
 ### Manual Deployment
 
-For manual deployments or local testing:
+For manual deployments or testing, the GitHub Actions workflow handles everything automatically. Simply:
 
 **Quick Deploy:**
 ```bash
-# Web version to GitHub Pages (Free)
-npm run build:web
-npm run deploy:gh-pages
+# Just push to main - deployment is automatic!
+git push origin main
 
-# Android APK (Free with EAS)
+# For Android APK (Free with EAS)
 eas build --platform android --profile production
 ```
 

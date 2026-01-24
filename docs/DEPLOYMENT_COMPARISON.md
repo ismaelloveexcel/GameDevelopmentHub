@@ -110,10 +110,9 @@ eas build --platform android
 
 #### Commands
 ```bash
-# Automated via GitHub Actions
-# Or manually:
-npm run build:web
-npm run deploy:gh-pages
+# Automated via GitHub Actions on push to main
+# Just push your code:
+git push origin main
 ```
 
 #### Score: 10/10 for Web
@@ -456,10 +455,6 @@ npm install -g eas-cli
 
 # Deploy web (automatic on push to main)
 git push origin main
-
-# Or manually deploy web
-npm run build:web
-npm run deploy:gh-pages
 
 # Deploy mobile
 npm run eas:build:android

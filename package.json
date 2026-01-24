@@ -14,7 +14,6 @@
     "build:web": "npx expo export -p web --output-dir web-build",
     "build:ios": "echo 'Deprecated: Use EAS Build instead - npm run eas:build:ios'",
     "build:android": "echo 'Deprecated: Use EAS Build instead - npm run eas:build:android'",
-    "deploy:gh-pages": "npm run build:web && gh-pages -d web-build",
     "eas:build:android": "eas build --platform android --profile production",
     "eas:build:ios": "eas build --platform ios --profile production",
     "eas:preview": "eas build --platform android --profile preview"
