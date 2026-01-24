@@ -316,3 +316,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Made with ❤️ by the GameForge Team**
 
 *Create games, not code.*
+
+## AI Agents for Automated Game Workflow
+
+Enhanced with GitHub Copilot custom agents and local CrewAI scripting for chaining tasks. You generate ideas (e.g., via issues) → Agents handle the rest.
+
+### Agents
+1. **Idea Polisher**: Refines ideas, integrating with Genie AI personalities.
+2. **Repo Reviewer**: Finds open-source game creator repos/tools (e.g., for React Native/Expo).
+3. **Game Builder**: Generates TS/JS code using your templates/engines.
+4. **Game Tester**: Tests for mobile compat, bugs via sims.
+
+### Workflow Chain
+Idea → Polish → Review repos for tools → Build code → Test → Output to prototypes/.
+
+### Local Simulation
+Run `python scripts/agent_chain.py` for offline chaining (outputs to console/files).
+
+**Top Reviewed Repos (Starter)**: FlowiseAI (visual AI for game logic), awesome-llm-apps (game agents), TriggerDev (workflows).
