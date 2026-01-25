@@ -102,7 +102,8 @@ npm run web
 - [API Reference](docs/API.md)
 
 ### Deployment Guides 🚀
-- [**GitHub Actions Automated Deployment**](docs/GITHUB_ACTIONS_DEPLOYMENT.md) - CI/CD with GitHub Actions ⭐ **NEW!**
+- [**⚡ Fastest Deploy (2 min)**](docs/FASTEST_DEPLOY.md) - **Just 2 steps, zero accounts needed** ⭐ **RECOMMENDED!**
+- [**GitHub Actions Automated Deployment**](docs/GITHUB_ACTIONS_DEPLOYMENT.md) - CI/CD with GitHub Actions
 - [**Deployment Summary**](docs/DEPLOYMENT_SUMMARY.md) - Quick overview
 - [**Free Deployment Recommendation**](docs/FREE_DEPLOYMENT_RECOMMENDATION.md) - Complete guide
 - [**Quick Deploy Guide**](docs/QUICK_DEPLOY_GUIDE.md) - Deploy in 10 minutes
