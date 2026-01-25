@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameForge Mobile - AI-Powered Game Creation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #22c55e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .badges img {
+            height: 24px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        /* Features Grid */
+        .features {
+            padding: 60px 0;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Documentation Section */
+        .docs-section {
+            padding: 60px 0;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .docs-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .doc-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.2s;
+        }
+        
+        .doc-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--primary);
+        }
+        
+        .doc-card h4 {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .doc-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .doc-card .badge {
+            background: var(--success);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+        
+        /* Templates Section */
+        .templates {
+            padding: 60px 0;
+        }
+        
+        .templates h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .templates > p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 50px;
+        }
+        
+        .template-category {
+            margin-bottom: 40px;
+        }
+        
+        .template-category h3 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .template-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .template-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .template-item span:first-child {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--gray);
+        }
+        
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="./" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span>GameForge Mobile</span>
+            </a>
+            <nav class="nav-links">
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub">GitHub</a>
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/tree/main/docs">Documentation</a>
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/actions">CI/CD</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>AI-Powered Game Creation Platform</h1>
+                <p>Create professional mobile games, VR experiences, and educational content with <strong>zero coding required</strong>.</p>
+                
+                <div class="badges">
+                    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+                    <img src="https://img.shields.io/badge/React%20Native-0.72-61DAFB.svg" alt="React Native">
+                    <img src="https://img.shields.io/badge/TypeScript-5.1-blue.svg" alt="TypeScript">
+                    <img src="https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/ci.yml/badge.svg" alt="CI">
+                    <img src="https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/deploy-web.yml/badge.svg" alt="Deploy">
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub" class="btn btn-primary">
+                        ⭐ View on GitHub
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/GETTING_STARTED.md" class="btn btn-secondary">
+                        📖 Get Started
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>✨ Core Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>15 Game Templates</h3>
+                        <p>Ready-to-use templates across all genres - from puzzle games to VR experiences.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Genie AI Assistant</h3>
+                        <p>4 specialized AI personalities to guide you through game design, technical implementation, and marketing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎭</div>
+                        <h3>5 Art Styles</h3>
+                        <p>Professional visual themes including Pixel Art, Low Poly 3D, Hand-Drawn, Cyberpunk, and Watercolor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🥽</div>
+                        <h3>VR/AR Support</h3>
+                        <p>Create immersive experiences for Quest, PSVR, and WebXR with A-Frame integration.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Marketing Automation</h3>
+                        <p>Built-in tools for promotion, analytics, and monetization strategies.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Multi-Platform Export</h3>
+                        <p>Deploy to iOS, Android, and Web with automated CI/CD pipelines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section">
+            <div class="container">
+                <h2>📚 Documentation</h2>
+                <div class="docs-grid">
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/GETTING_STARTED.md" class="doc-card">
+                        <h4>🚀 Getting Started</h4>
+                        <p>Quick setup guide to get up and running in minutes.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/TEMPLATES.md" class="doc-card">
+                        <h4>🎮 Game Templates</h4>
+                        <p>Explore 15 ready-to-use game templates.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/GENIE_AI.md" class="doc-card">
+                        <h4>🤖 Genie AI Guide</h4>
+                        <p>Learn how to use the AI assistant effectively.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/ART_STYLES.md" class="doc-card">
+                        <h4>🎨 Art Styles</h4>
+                        <p>Apply professional visual themes to your games.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/VR_GUIDE.md" class="doc-card">
+                        <h4>🥽 VR Development</h4>
+                        <p>Create immersive VR/AR experiences.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/MARKETING.md" class="doc-card">
+                        <h4>📈 Marketing Tools</h4>
+                        <p>Promote and monetize your games.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/GITHUB_ACTIONS_DEPLOYMENT.md" class="doc-card">
+                        <h4>⚙️ CI/CD Setup <span class="badge">NEW</span></h4>
+                        <p>Automated deployment with GitHub Actions.</p>
+                    </a>
+                    <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/docs/API.md" class="doc-card">
+                        <h4>📖 API Reference</h4>
+                        <p>Complete API documentation.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="templates">
+            <div class="container">
+                <h2>🎮 Game Templates</h2>
+                <p>Choose from 15 professionally designed templates</p>
+                
+                <div class="template-category">
+                    <h3>2D Games (Pixi.js)</h3>
+                    <div class="template-list">
+                        <div class="template-item"><span>💎</span> Puzzle Match-3</div>
+                        <div class="template-item"><span>🏃</span> Endless Runner</div>
+                        <div class="template-item"><span>🏰</span> Tower Defense</div>
+                        <div class="template-item"><span>🦘</span> Platformer</div>
+                        <div class="template-item"><span>❓</span> Quiz/Trivia</div>
+                        <div class="template-item"><span>🃏</span> Card Game</div>
+                        <div class="template-item"><span>👆</span> Idle Clicker</div>
+                        <div class="template-item"><span>🎵</span> Rhythm Game</div>
+                        <div class="template-item"><span>📖</span> Interactive Story</div>
+                    </div>
+                </div>
+                
+                <div class="template-category">
+                    <h3>3D Games (Babylon.js)</h3>
+                    <div class="template-list">
+                        <div class="template-item"><span>🏎️</span> Racing Game</div>
+                        <div class="template-item"><span>⚙️</span> Physics Puzzle</div>
+                    </div>
+                </div>
+                
+                <div class="template-category">
+                    <h3>VR/AR Games (A-Frame)</h3>
+                    <div class="template-list">
+                        <div class="template-item"><span>🔐</span> VR Escape Room</div>
+                        <div class="template-item"><span>🗺️</span> AR Treasure Hunt</div>
+                        <div class="template-item"><span>🏛️</span> Virtual Museum</div>
+                        <div class="template-item"><span>🎯</span> Shooting Gallery</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by the GameForge Team</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub">GitHub</a> · 
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/LICENSE">MIT License</a> · 
+                <a href="https://github.com/ismaelloveexcel/GameDevelopmentHub/blob/main/CONTRIBUTING.md">Contribute</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,9 +1,16 @@
-name: Deploy Web to GitHub Pages
+name: Deploy Landing Page to GitHub Pages
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'landing-page/**'
+      - 'README.md'
+      - 'docs/**'
+      - '.github/workflows/deploy-web.yml'
+  workflow_dispatch:
+    # Allow manual triggering
 
 jobs:
   deploy:
@@ -22,27 +29,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build web app
-        run: npm run build:web
-        env:
-          NODE_OPTIONS: '--max-old-space-size=4096'
-
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'web-build'
+          path: 'landing-page'
 
       - name: Deploy to GitHub Pages
         id: deployment
