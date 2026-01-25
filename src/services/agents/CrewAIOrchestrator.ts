@@ -107,6 +107,7 @@ export class CrewAIOrchestrator {
     automationInput: AutomationInput
   ): GameConceptAnalysis {
     // Validate inputs against agent requirements before processing
+    // Note: Validation is outside try-catch so errors are thrown directly
     this.validateGameConceptInput(conceptInput);
 
     try {
