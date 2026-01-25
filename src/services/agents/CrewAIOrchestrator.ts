@@ -72,7 +72,7 @@ export class CrewAIOrchestrator {
     const { gameConcept, targetAudience, coreGameLoop, whatAIGenerates, whyUsersPay } = conceptInput;
 
     if (!Array.isArray(coreGameLoop)) {
-      throw new Error('coreGameLoop must be an array of steps.');
+      throw new Error('Core game loop must be an array');
     }
 
     if (coreGameLoop.length === 0) {
@@ -81,7 +81,7 @@ export class CrewAIOrchestrator {
 
     // GameConceptSniper expects at most 3 steps in the coreGameLoop.
     if (coreGameLoop.length > 3) {
-      throw new Error('coreGameLoop must contain at most 3 steps to satisfy GameConceptSniper requirements.');
+      throw new Error('Core game loop must have ≤ 3 steps');
     }
 
     if (!gameConcept || !gameConcept.trim()) {
