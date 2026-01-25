@@ -1,4 +1,4 @@
-import { GameTemplate, ProjectData } from '../types';
+import { GameTemplate } from '../types';
 
 /**
  * Game Templates Library

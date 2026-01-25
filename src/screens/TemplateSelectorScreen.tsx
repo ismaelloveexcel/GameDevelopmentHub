@@ -5,20 +5,15 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Image,
-  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme } from '../contexts/ThemeContext';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { templateLibrary } from '../services/TemplateLibrary';
-import { GameTemplate, RootStackParamList } from '../types';
+import { RootStackParamList } from '../types';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
-
-const { width } = Dimensions.get('window');
-const CARD_WIDTH = width - 32;
 
 export default function TemplateSelectorScreen() {
   const { theme } = useTheme();
