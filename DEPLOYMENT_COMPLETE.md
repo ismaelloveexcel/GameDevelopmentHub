@@ -273,7 +273,7 @@ Your automated deployment is working when you see:
 
 - ✅ Green checkmarks on workflow badges in README
 - ✅ Successful workflow runs in Actions tab
-- ✅ Live web app accessible at Vercel URL
+- ✅ Live web app accessible at GitHub Pages URL
 - ✅ Mobile builds completing in EAS
 - ✅ PR checks passing before merge
 

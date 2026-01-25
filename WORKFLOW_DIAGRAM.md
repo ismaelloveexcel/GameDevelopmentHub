@@ -46,8 +46,9 @@
 │                               │            │                  │
 │                          ┌────▼────┐  ┌────▼────┐              │
 │                          │ Deploy  │  │  Build  │              │
-│                          │  to     │  │ Android │              │
-│                          │ Vercel  │  │   iOS   │              │
+│                          │   to    │  │ Android │              │
+│                          │ GitHub  │  │   iOS   │              │
+│                          │  Pages  │  │         │              │
 │                          └────┬────┘  └────┬────┘              │
 │                               │            │                  │
 └───────────────────────────────┼────────────┼───────────────────┘
@@ -57,16 +58,17 @@
 │                    DEPLOYMENT TARGETS                           │
 │                               │            │                  │
 │                      ┌────────▼────┐  ┌────▼─────┐             │
-│                      │   Vercel    │  │   EAS    │             │
-│                      │  (Web App)  │  │ (Mobile) │             │
+│                      │   GitHub    │  │   EAS    │             │
+│                      │   Pages     │  │ (Mobile) │             │
+│                      │  (Web App)  │  │          │             │
 │                      └─────┬───────┘  └────┬─────┘             │
 │                            │               │                  │
 │                      ┌─────▼────────┐ ┌────▼──────┐            │
 │                      │ Production   │ │ Download  │            │
 │                      │     URL      │ │  APK/IPA  │            │
-│                      │gameforge-    │ │           │            │
-│                      │mobile.vercel │ │           │            │
-│                      │.app          │ │           │            │
+│                      │ismaelloveexcel│ │          │            │
+│                      │.github.io/   │ │           │            │
+│                      │GameDevHub    │ │           │            │
 │                      └──────────────┘ └───────────┘            │
 └─────────────────────────────────────────────────────────────────┘
 
@@ -203,10 +205,7 @@
 │ GitHub Repository       │
 │ Settings → Secrets      │
 │                         │
-│ • VERCEL_TOKEN          │
-│ • VERCEL_ORG_ID         │
-│ • VERCEL_PROJECT_ID     │
-│ • EXPO_TOKEN            │
+│ • EXPO_TOKEN (optional) │
 └──────────┬──────────────┘
            │
 ┌──────────▼──────────────┐
@@ -217,8 +216,8 @@
      ┌─────┴─────┐
      │           │
 ┌────▼────┐ ┌───▼────┐
-│ Vercel  │ │  Expo  │
-│   API   │ │  API   │
+│ GitHub  │ │  Expo  │
+│  Pages  │ │  API   │
 └────┬────┘ └───┬────┘
      │          │
 ┌────▼──────────▼────┐
@@ -273,7 +272,7 @@ Trigger Workflows
 GitHub Actions
 (Free for public repos)
         │
-        ├─→ Vercel
+        ├─→ GitHub Pages
         │   (Free tier: 100GB bandwidth)
         │
         └─→ Expo EAS
@@ -309,8 +308,8 @@ Ready to Merge
 ---
 
 **Quick Reference:**
-- View workflows: `github.com/ismaelloveexcel/gameforge-mobile/actions`
-- Web app: `gameforge-mobile.vercel.app`
+- View workflows: `github.com/ismaelloveexcel/GameDevelopmentHub/actions`
+- Web app: `ismaelloveexcel.github.io/GameDevelopmentHub/`
 - Documentation: `docs/GITHUB_ACTIONS_DEPLOYMENT.md`
 
 **Status:** ✅ All workflows operational
