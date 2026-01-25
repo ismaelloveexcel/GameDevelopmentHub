@@ -124,7 +124,7 @@ Then trigger mobile build via GitHub UI:
 
 - **Actions tab**: https://github.com/ismaelloveexcel/GameDevelopmentHub/actions
 - **Live site**: https://ismaelloveexcel.github.io/GameDevelopmentHub/
-- **Deployment history**: Actions → deploy-web.yml runs
+- **Deployment history**: Actions → `deploy-app.yml` (full app) and `deploy-web.yml` (landing page) runs
 
 ---
 

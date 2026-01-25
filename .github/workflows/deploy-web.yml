@@ -22,7 +22,7 @@ jobs:
     
     # Allow only one concurrent deployment
     concurrency:
-      group: "pages-landing"
+      group: "pages"
       cancel-in-progress: true
     
     steps:
