@@ -14,13 +14,13 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useGenie } from '../contexts/GenieContext';
 import { GeniePersonality } from '../types';
 
-const personalities: Array<{
+const personalities: {
   type: GeniePersonality;
   name: string;
   icon: string;
   color: string;
   description: string;
-}> = [
+}[] = [
   {
     type: 'creative',
     name: 'Creative Mentor',

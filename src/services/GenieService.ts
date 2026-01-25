@@ -17,8 +17,9 @@ class GenieService {
     personality: GeniePersonality,
     context?: GenieContext
   ): Promise<GenieResponse> {
-    // Get personality-specific system prompt
-    const systemPrompt = this.getPersonalityPrompt(personality);
+    // Get personality-specific system prompt (will be used with real AI API)
+    // In production: const systemPrompt = this.getPersonalityPrompt(personality);
+    this.getPersonalityPrompt(personality); // Validate personality exists
     
     // Build context string
     const contextString = this.buildContextString(context);
@@ -103,7 +104,7 @@ Use a friendly, encouraging tone and think like an experienced teacher.`,
   private async simulateResponse(
     message: string,
     personality: GeniePersonality,
-    contextString: string
+    _contextString: string
   ): Promise<GenieResponse> {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 1000));

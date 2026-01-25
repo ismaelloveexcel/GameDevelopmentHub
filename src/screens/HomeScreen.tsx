@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -14,8 +13,6 @@ import { useTheme } from '../contexts/ThemeContext';
 import { RootStackParamList } from '../types';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
-
-const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const navigation = useNavigation<NavigationProp>();

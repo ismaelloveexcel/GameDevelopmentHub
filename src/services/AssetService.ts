@@ -288,7 +288,7 @@ class AssetService {
   /**
    * Generate asset pack for art style
    */
-  generateAssetPack(artStyle: string, gameType: string): Asset[] {
+  generateAssetPack(artStyle: string, _gameType: string): Asset[] {
     // This would generate or fetch appropriate assets
     // For now, return sample assets
     const sampleAssets = this.getSampleAssets();
@@ -298,7 +298,7 @@ class AssetService {
   /**
    * Validate asset URL
    */
-  async validateAsset(url: string): Promise<boolean> {
+  async validateAsset(_url: string): Promise<boolean> {
     try {
       // In a real implementation, this would check if the asset exists
       // and is accessible

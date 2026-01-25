@@ -2,7 +2,6 @@ import {
   MarketingCampaign,
   AnalyticsDashboard,
   CampaignContent,
-  CampaignAnalytics,
 } from '../types';
 
 /**
@@ -110,7 +109,7 @@ class MarketingService {
   /**
    * Get analytics dashboard
    */
-  getAnalyticsDashboard(projectId: string): AnalyticsDashboard {
+  getAnalyticsDashboard(_projectId: string): AnalyticsDashboard {
     // In production, this would fetch real analytics data
     return {
       overview: {
@@ -254,11 +253,11 @@ class MarketingService {
   /**
    * Get user segmentation data
    */
-  getUserSegments(projectId: string): Array<{
+  getUserSegments(_projectId: string): {
     name: string;
     count: number;
     characteristics: string[];
-  }> {
+  }[] {
     return [
       {
         name: 'Power Users',
@@ -347,9 +346,9 @@ class MarketingService {
    * Setup push notifications
    */
   async setupPushNotification(
-    title: string,
-    body: string,
-    scheduledTime?: Date
+    _title: string,
+    _body: string,
+    _scheduledTime?: Date
   ): Promise<string> {
     // Simulate push notification setup
     await new Promise((resolve) => setTimeout(resolve, 300));
