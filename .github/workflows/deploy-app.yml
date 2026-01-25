@@ -1,19 +1,20 @@
-name: Deploy Landing Page to GitHub Pages
+name: Deploy Full App to GitHub Pages
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'landing-page/**'
-      - 'README.md'
-      - 'docs/**'
-      - '.github/workflows/deploy-web.yml'
+      - 'src/**'
+      - 'App.tsx'
+      - 'package.json'
+      - 'app.json'
+      - '.github/workflows/deploy-app.yml'
   workflow_dispatch:
     # Allow manual triggering
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,12 +23,24 @@ jobs:
     
     # Allow only one concurrent deployment
     concurrency:
-      group: "pages-landing"
+      group: "pages-app"
       cancel-in-progress: true
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web app
+        run: npm run build:web
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
@@ -35,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'landing-page'
+          path: 'web-build'
 
       - name: Deploy to GitHub Pages
         id: deployment

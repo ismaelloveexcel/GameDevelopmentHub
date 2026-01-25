@@ -1,12 +1,21 @@
 # 🚀 Fastest Way to Deploy GameForge Mobile
 
-**Time to deploy: ~2 minutes | Manual steps: 2**
+**Time to deploy: ~3 minutes | Manual steps: 2**
 
 > **Note for forks:** Replace `ismaelloveexcel/GameDevelopmentHub` with your own `username/repo` in all URLs below.
 
 ---
 
-## TL;DR - Just Do This
+## Two Deployment Options
+
+| Option | What It Deploys | Best For |
+|--------|----------------|----------|
+| **Landing Page** | Static marketing page (`landing-page/`) | Quick promotional site |
+| **Full App** ⭐ | Complete React Native/Expo app | The actual game creation platform |
+
+---
+
+## TL;DR - Deploy the Full App
 
 ### Step 1: Enable GitHub Pages (1 click)
 
@@ -14,13 +23,14 @@
 2. Under "Build and deployment" → Set **Source** to **"GitHub Actions"**
 3. Click **Save**
 
-### Step 2: Trigger Deployment
+### Step 2: Trigger Full App Deployment
 
+Click **"Run workflow"** at: https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/deploy-app.yml
+
+Or push changes to app files (`src/`, `App.tsx`, etc.) to `main`:
 ```bash
 git push origin main
 ```
-
-Or click **"Run workflow"** at: https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/deploy-web.yml
 
 ---
 
@@ -49,40 +59,45 @@ https://ismaelloveexcel.github.io/GameDevelopmentHub/
 
 The repository includes pre-configured GitHub Actions workflows:
 
-### 1. `deploy-web.yml` - Web Deployment
-- **Triggers**: Push to `main` branch
-- **Action**: Builds and deploys landing page to GitHub Pages
-- **Result**: Live website
+### 1. `deploy-app.yml` - Full App Deployment ⭐ **RECOMMENDED**
+- **Triggers**: Push to `main` (app code changes), Manual trigger
+- **Action**: Builds Expo web app (`npm run build:web`) and deploys to GitHub Pages
+- **Result**: Live React Native app at GitHub Pages URL
 
-### 2. `ci.yml` - Continuous Integration
+### 2. `deploy-web.yml` - Landing Page Deployment
+- **Triggers**: Push to `main` (landing-page changes)
+- **Action**: Deploys static `landing-page/` directory to GitHub Pages
+- **Result**: Marketing/promotional page
+
+### 3. `ci.yml` - Continuous Integration
 - **Triggers**: Push to `main`/`develop`, Pull requests
 - **Action**: Runs ESLint, Jest tests, TypeScript checks
 - **Result**: Quality gates on all changes
 
-### 3. `build-mobile.yml` - Mobile Builds (Optional)
+### 4. `build-mobile.yml` - Mobile Builds (Optional)
 - **Triggers**: Manual workflow dispatch only
 - **Action**: Builds Android/iOS with EAS
 - **Requires**: `EXPO_TOKEN` secret (for mobile builds only)
 
 ---
 
-## Deployment Flow
+## Deployment Flow (Full App)
 
 ```
-You push to main
-       ↓
-GitHub Actions triggered
-       ↓
-   ┌───┴───┐
-   ↓       ↓
-CI runs   Web builds
-(lint,    (landing-page/)
- test)         ↓
-   ↓      Upload artifact
-Pass/Fail      ↓
-          Deploy to GitHub Pages
-               ↓
-          🎉 Live at ismaelloveexcel.github.io/GameDevelopmentHub/
+You trigger deploy-app.yml workflow
+              ↓
+    GitHub Actions triggered
+              ↓
+       npm ci (install deps)
+              ↓
+       npm run build:web
+       (Expo builds React Native for web)
+              ↓
+       Upload web-build/ artifact
+              ↓
+       Deploy to GitHub Pages
+              ↓
+       🎉 Live at ismaelloveexcel.github.io/GameDevelopmentHub/
 ```
 
 ---
@@ -141,7 +156,8 @@ Then trigger mobile build via GitHub UI:
 | What | How |
 |------|-----|
 | **Enable deployment** | Settings → Pages → Source = "GitHub Actions" |
-| **Deploy** | `git push origin main` |
+| **Deploy Full App** | Actions → `deploy-app.yml` → Run workflow |
+| **Deploy Landing Page** | Push changes to `landing-page/` |
 | **View site** | `ismaelloveexcel.github.io/GameDevelopmentHub/` |
 | **Monitor** | Actions tab |
 
