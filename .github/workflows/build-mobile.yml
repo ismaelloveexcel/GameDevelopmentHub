@@ -1,6 +1,6 @@
 name: Build Mobile App with EAS
 
-# Only trigger manually - ensures owner approval before publishing
+# Only trigger manually - requires owner approval via protected environment
 on:
   workflow_dispatch:
     inputs:
@@ -26,6 +26,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Protected environment requires owner approval before builds can proceed
+    # To set up: Go to Settings → Environments → New environment → "production-mobile"
+    # Then add required reviewers (yourself) under "Environment protection rules"
+    environment: production-mobile
     permissions:
       contents: read
     
