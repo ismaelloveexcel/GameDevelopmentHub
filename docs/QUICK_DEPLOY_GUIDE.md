@@ -1,10 +1,41 @@
 # Quick Deploy Guide 🚀
 
-Get your GameForge Mobile app deployed in under 10 minutes!
+Get your GameForge Mobile app deployed in under 2 minutes!
 
-## 🌐 Deploy Web Version (Fastest)
+## 🌐 Deploy Web Version (Fastest - GitHub Pages)
 
-### Using Vercel (Recommended)
+### The Easiest Method (Recommended)
+
+GitHub Pages is already configured in this repository. **No external accounts required!**
+
+**Step 1: Enable GitHub Pages (1 minute)**
+
+1. Go to your repository Settings: https://github.com/ismaelloveexcel/GameDevelopmentHub/settings/pages
+2. Under "Build and deployment", set **Source** to **"GitHub Actions"**
+3. Click Save
+
+**Step 2: Deploy**
+
+```bash
+# Just push to main - deployment is automatic!
+git push origin main
+```
+
+**Done!** Your app will be live at: `https://ismaelloveexcel.github.io/GameDevelopmentHub/`
+
+### Why GitHub Pages?
+
+| Feature | GitHub Pages | Vercel | Netlify |
+|---------|-------------|--------|---------|
+| External account | ❌ None needed | ✅ Required | ✅ Required |
+| Secrets/tokens | ❌ None needed | ✅ 3 required | ✅ 1 required |
+| Setup steps | 2 | 5+ | 4+ |
+| Cost | $0 | $0 | $0 |
+| Already configured | ✅ Yes | ❌ No | ❌ No |
+
+### Alternative: Using Vercel (Manual Setup)
+
+If you prefer Vercel:
 
 1. **Install Vercel CLI**
    ```bash
