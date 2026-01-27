@@ -9,6 +9,20 @@
 [![Build Mobile](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/build-mobile.yml/badge.svg)](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/build-mobile.yml)
 [![CI](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/ci.yml/badge.svg)](https://github.com/ismaelloveexcel/GameDevelopmentHub/actions/workflows/ci.yml)
 
+## 🛡️ Deployment Guardian
+
+**Automated deployment readiness checker** - Ensure 100% deployment success before pushing to production!
+
+```bash
+# Run comprehensive deployment check
+npm run deploy:check
+
+# Full validation (lint + test + deployment)
+npm run deploy:validate
+```
+
+📖 **[Complete Deployment Guardian Guide](docs/DEPLOYMENT_GUARDIAN_GUIDE.md)** | ⚡ **[Quick Reference](docs/DEPLOYMENT_GUARDIAN_QUICK_REF.md)**
+
 ## 🌟 Features
 
 ### Core Capabilities
@@ -101,9 +115,11 @@ npm run web
 - [VR Development](docs/VR_GUIDE.md)
 - [API Reference](docs/API.md)
 
-### Deployment Guides 🚀
-- [**⚡ Fastest Deploy (2 min)**](docs/FASTEST_DEPLOY.md) - **Just 2 steps, zero accounts needed** ⭐ **RECOMMENDED!**
-- [**GitHub Actions Automated Deployment**](docs/GITHUB_ACTIONS_DEPLOYMENT.md) - CI/CD with GitHub Actions
+### Deployment & Operations 🚀
+- [**🛡️ Deployment Guardian Guide**](docs/DEPLOYMENT_GUARDIAN_GUIDE.md) - Automated deployment readiness checker
+- [**⚡ Quick Reference**](docs/DEPLOYMENT_GUARDIAN_QUICK_REF.md) - Commands and troubleshooting
+- [**⚡ Fastest Deploy (2 min)**](docs/FASTEST_DEPLOY.md) - Just 2 steps, zero accounts needed ⭐
+- [**GitHub Actions Deployment**](docs/GITHUB_ACTIONS_DEPLOYMENT.md) - CI/CD with GitHub Actions
 - [**Deployment Summary**](docs/DEPLOYMENT_SUMMARY.md) - Quick overview
 - [**Free Deployment Recommendation**](docs/FREE_DEPLOYMENT_RECOMMENDATION.md) - Complete guide
 - [**Quick Deploy Guide**](docs/QUICK_DEPLOY_GUIDE.md) - Deploy in under 2 minutes
