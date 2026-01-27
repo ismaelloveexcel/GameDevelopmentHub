@@ -10,6 +10,39 @@ const readline = require('readline');
 const { execSync } = require('child_process');
 const fs = require('fs');
 
+// Configuration constants
+const CONFIG = {
+  PASSING_THRESHOLD: 0.8,  // 80% of checks must pass
+  COMMAND_TIMEOUT: 30000,  // 30 seconds timeout for commands
+};
+
+/**
+ * Get repository information from git remote
+ */
+function getRepoInfo() {
+  try {
+    const remote = execSync('git remote get-url origin', { encoding: 'utf8', timeout: 5000 }).trim();
+    const match = remote.match(/github\.com[:/](.+?)\/(.+?)(\.git)?$/);
+    if (match) {
+      return {
+        owner: match[1],
+        repo: match[2],
+        actionsUrl: `https://github.com/${match[1]}/${match[2]}/actions`,
+      };
+    }
+  } catch (error) {
+    // Use default values
+  }
+  
+  return {
+    owner: 'ismaelloveexcel',
+    repo: 'GameDevelopmentHub',
+    actionsUrl: 'https://github.com/ismaelloveexcel/GameDevelopmentHub/actions',
+  };
+}
+
+const repoInfo = getRepoInfo();
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -72,7 +105,7 @@ async function runChecklist() {
   
   checks.push(await checkItem('✓ Tests passing (npm test)', () => {
     try {
-      execSync('npm test -- --passWithNoTests 2>&1', { stdio: 'ignore' });
+      execSync('npm test -- --passWithNoTests 2>&1', { stdio: 'ignore', timeout: CONFIG.COMMAND_TIMEOUT });
       return true;
     } catch {
       return false;
@@ -81,7 +114,7 @@ async function runChecklist() {
   
   checks.push(await checkItem('✓ No TypeScript errors (npx tsc --noEmit)', () => {
     try {
-      execSync('npx tsc --noEmit 2>&1', { stdio: 'ignore' });
+      execSync('npx tsc --noEmit 2>&1', { stdio: 'ignore', timeout: CONFIG.COMMAND_TIMEOUT });
       return true;
     } catch {
       return false;
@@ -148,10 +181,10 @@ async function runChecklist() {
     log('\nNext steps:', 'cyan');
     log('  1. Run: npm run deploy:check', 'reset');
     log('  2. Push to main: git push origin main', 'reset');
-    log('  3. Monitor: https://github.com/ismaelloveexcel/GameDevelopmentHub/actions\n', 'reset');
+    log(`  3. Monitor: ${repoInfo.actionsUrl}\n`, 'reset');
     rl.close();
     process.exit(0);
-  } else if (passed >= total * 0.8) {
+  } else if (passed >= total * CONFIG.PASSING_THRESHOLD) {
     log('\n⚠️  MOSTLY READY - Fix remaining items before deploying', 'yellow');
     log(`\nMissing: ${total - passed} items\n`, 'yellow');
     rl.close();

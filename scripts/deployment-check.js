@@ -8,7 +8,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const { execSync } = require('child_process');
+
+// Configuration constants
+const CONFIG = {
+  LINT_WARNING_THRESHOLD: 50,  // Maximum acceptable lint warnings
+  MIN_GREEN_SCORE: 8.5,         // Minimum score for GREEN status
+  MIN_YELLOW_SCORE: 7.0,        // Minimum score for YELLOW status
+  MAX_WARNINGS_FOR_GREEN: 10,   // Maximum warnings for GREEN status
+  MAX_FAILURES_FOR_YELLOW: 5,   // Maximum failures for YELLOW status
+};
 
 // ANSI color codes for terminal output
 const colors = {
@@ -20,6 +30,51 @@ const colors = {
   cyan: '\x1b[36m',
   bold: '\x1b[1m',
 };
+
+/**
+ * Get repository information from package.json or git
+ */
+function getRepoInfo() {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+    if (packageJson.repository && packageJson.repository.url) {
+      const match = packageJson.repository.url.match(/github\.com[:/](.+?)\/(.+?)(\.git)?$/);
+      if (match) {
+        return {
+          owner: match[1],
+          repo: match[2],
+          actionsUrl: `https://github.com/${match[1]}/${match[2]}/actions`,
+          pagesUrl: `https://${match[1]}.github.io/${match[2]}/`,
+        };
+      }
+    }
+  } catch (error) {
+    // Fall back to git remote
+  }
+  
+  try {
+    const remote = execSync('git remote get-url origin', { encoding: 'utf8' }).trim();
+    const match = remote.match(/github\.com[:/](.+?)\/(.+?)(\.git)?$/);
+    if (match) {
+      return {
+        owner: match[1],
+        repo: match[2],
+        actionsUrl: `https://github.com/${match[1]}/${match[2]}/actions`,
+        pagesUrl: `https://${match[1]}.github.io/${match[2]}/`,
+      };
+    }
+  } catch (error) {
+    // Use default values
+  }
+  
+  // Default fallback
+  return {
+    owner: 'ismaelloveexcel',
+    repo: 'GameDevelopmentHub',
+    actionsUrl: 'https://github.com/ismaelloveexcel/GameDevelopmentHub/actions',
+    pagesUrl: 'https://ismaelloveexcel.github.io/GameDevelopmentHub/',
+  };
+}
 
 class DeploymentGuardian {
   constructor() {
@@ -33,6 +88,7 @@ class DeploymentGuardian {
       failed: 0,
       warnings: 0,
     };
+    this.repoInfo = getRepoInfo();
   }
 
   log(message, color = 'reset') {
@@ -167,8 +223,10 @@ class DeploymentGuardian {
       
       // Check npm audit
       try {
-        execSync('npm audit --json > /tmp/audit.json 2>&1', { stdio: 'ignore' });
-        const auditData = JSON.parse(fs.readFileSync('/tmp/audit.json', 'utf8'));
+        const tmpDir = os.tmpdir();
+        const auditFile = path.join(tmpDir, `audit-${Date.now()}.json`);
+        execSync(`npm audit --json > ${auditFile} 2>&1`, { stdio: 'ignore' });
+        const auditData = JSON.parse(fs.readFileSync(auditFile, 'utf8'));
         
         const vulnerabilities = auditData.metadata?.vulnerabilities || {};
         const total = Object.values(vulnerabilities).reduce((a, b) => a + b, 0);
@@ -201,8 +259,8 @@ class DeploymentGuardian {
         }
         
         // Clean up temp file
-        if (fs.existsSync('/tmp/audit.json')) {
-          fs.unlinkSync('/tmp/audit.json');
+        if (fs.existsSync(auditFile)) {
+          fs.unlinkSync(auditFile);
         }
       } catch (error) {
         this.check('Security audit', 'warn', 'Could not run npm audit');
@@ -226,7 +284,8 @@ class DeploymentGuardian {
           this.check('ESLint', 'pass', 'No issues found');
         } else if (warningMatches) {
           const problems = parseInt(warningMatches[1], 10);
-          if (problems < 50) {
+          // Threshold for acceptable lint warnings
+          if (problems < CONFIG.LINT_WARNING_THRESHOLD) {
             this.check('ESLint', 'warn', `${problems} issues (acceptable)`);
           } else {
             this.check('ESLint', 'fail', `${problems} issues`);
@@ -375,13 +434,13 @@ class DeploymentGuardian {
       ? ((this.checks.passed + this.checks.warnings * 0.5) / totalChecks * 10).toFixed(1)
       : 0;
     
-    // Determine status color
+    // Determine status color based on configurable thresholds
     let status = 'GREEN';
     let statusColor = 'green';
-    if (score < 7 || this.checks.failed > 5) {
+    if (score < CONFIG.MIN_YELLOW_SCORE || this.checks.failed > CONFIG.MAX_FAILURES_FOR_YELLOW) {
       status = 'RED';
       statusColor = 'red';
-    } else if (score < 8.5 || this.checks.warnings > 10) {
+    } else if (score < CONFIG.MIN_GREEN_SCORE || this.checks.warnings > CONFIG.MAX_WARNINGS_FOR_GREEN) {
       status = 'YELLOW';
       statusColor = 'yellow';
     }
@@ -422,8 +481,8 @@ class DeploymentGuardian {
     if (this.checks.failed === 0 && this.issues.high.length === 0) {
       this.log('✓ Ready for deployment!', 'green');
       this.log('  1. Push to main branch to trigger deployment', 'reset');
-      this.log('  2. Monitor GitHub Actions at: https://github.com/ismaelloveexcel/GameDevelopmentHub/actions', 'reset');
-      this.log('  3. Check deployed site at: https://ismaelloveexcel.github.io/GameDevelopmentHub/', 'reset');
+      this.log(`  2. Monitor GitHub Actions at: ${this.repoInfo.actionsUrl}`, 'reset');
+      this.log(`  3. Check deployed site at: ${this.repoInfo.pagesUrl}`, 'reset');
     } else {
       this.log('⚠ Address blockers before deploying:', 'yellow');
       this.issues.high.forEach((issue) => {
