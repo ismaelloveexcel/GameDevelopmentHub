@@ -40,7 +40,6 @@ GameForge Mobile is a React Native/Expo application for creating 2D games (Pixi.
 **Prerequisites:**
 - Node.js 20+ (LTS recommended)
 - npm 9+ or yarn 1.22+
-- Expo CLI: `npm install -g expo-cli`
 - For iOS: macOS with Xcode and iOS Simulator
 - For Android: Android Studio with emulator or physical device
 

@@ -21,7 +21,7 @@ Pre-1.0.0 releases may include breaking changes in minor versions.
 - Pull request and issue templates
 - CHANGELOG.md with versioning documentation
 - .editorconfig for consistent formatting
-- CI workflow enhancements (fail on ESLint warnings)
+- CI workflow with strict ESLint tracking (existing warnings logged, not blocking)
 
 ### Repository State
 - React Native 0.72.6 with Expo SDK 49
