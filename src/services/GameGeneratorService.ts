@@ -52,6 +52,11 @@ class GameGeneratorService {
       candidates = candidates.filter(t => difficultyTemplates.some(dt => dt.id === t.id));
     }
     
+    // If no candidates after filtering, use all templates
+    if (candidates.length === 0) {
+      candidates = templateLibrary.getAllTemplates();
+    }
+    
     // Score templates based on criteria match
     const scored = candidates.map(template => ({
       template,
@@ -67,7 +72,7 @@ class GameGeneratorService {
   /**
    * Score a template based on how well it matches criteria
    */
-  private scoreTemplate(template: any, criteria: GameGeneratorCriteria): number {
+  private scoreTemplate(template: { id: string; name: string; description: string; features: string[]; category: string; difficulty: string }, criteria: GameGeneratorCriteria): number {
     let score = 0;
     
     // Match theme keywords
@@ -181,7 +186,7 @@ class GameGeneratorService {
    */
   private generateColorPalette(theme: string, artStyle: ArtStyle) {
     // Get base palette from art style
-    const baseStyle = artStyleService.getStyle(artStyle);
+    const baseStyle = artStyleService.getStyleById(artStyle);
     if (!baseStyle) {
       return {
         primary: '#6366f1',
@@ -225,7 +230,7 @@ class GameGeneratorService {
   /**
    * Get suggestions for popular themes
    */
-  getPopularThemes(): Array<{ name: string; description: string; icon: string }> {
+  getPopularThemes(): { name: string; description: string; icon: string }[] {
     return [
       { name: 'Birthday Party', description: 'Fun games for birthday celebrations', icon: 'cake-variant' },
       { name: 'Wedding', description: 'Romantic and entertaining wedding games', icon: 'heart' },

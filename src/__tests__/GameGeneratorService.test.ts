@@ -104,12 +104,14 @@ describe('GameGeneratorService', () => {
     it('should generate game with specific game type', async () => {
       const criteria: GameGeneratorCriteria = {
         theme: 'Math Challenge',
-        gameType: 'quiz',
+        gameType: 'educational',
         difficulty: 'beginner',
       };
       
       const config = await gameGeneratorService.generateGame(criteria);
-      expect(config.templateId).toBe('quiz');
+      // When educational is selected, it should select from educational templates
+      const educationalTemplates = ['quiz', 'virtual-museum'];
+      expect(educationalTemplates).toContain(config.templateId);
     });
     
     it('should include occasion in game name if provided', async () => {

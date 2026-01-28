@@ -13,6 +13,7 @@
 
 ### Core Capabilities
 - **🎨 15 Complete Game Templates** - Ready-to-use templates across all genres
+- **🎯 AI Game Generator** - Create custom themed games for special occasions
 - **🤖 Genie AI Assistant** - 4 specialized AI personalities to guide you
 - **🎭 5 Signature Art Styles** - Professional visual themes for your games
 - **🥽 VR/AR Support** - Create immersive experiences for Quest, PSVR, and WebXR
@@ -29,6 +30,23 @@
 2. **Technical Expert** ⚙️ - Implementation & optimization help
 3. **Marketing Guru** 📈 - Promotion & monetization strategies
 4. **Educator** 📚 - Teaching-focused content creation
+
+### AI Game Generator 🎯
+
+Create custom games tailored for specific occasions and situations! Perfect for:
+- **Birthday Parties** - Fun, age-appropriate games
+- **Weddings** - Romantic and entertaining experiences
+- **Corporate Events** - Team building and training games
+- **Education** - Learning-focused content
+- **Holiday Celebrations** - Festive themed games
+- **Special Occasions** - Any custom event or situation
+
+Simply specify your theme, occasion, and requirements, and the AI will generate a complete game concept with:
+- Appropriate game template selection
+- Custom art style matching your theme
+- Themed color palettes
+- Difficulty tuning for your audience
+- Name and description generation
 
 ### Game Templates
 
@@ -138,6 +156,38 @@ gameforge-mobile/
 ```
 
 ## 🎮 Creating Your First Game
+
+### Option 1: Generate a Themed Game (Fastest!)
+
+```typescript
+import { gameGeneratorService } from './services/GameGeneratorService';
+import { projectService } from './services/ProjectService';
+
+// 1. Define your game criteria
+const criteria = {
+  theme: 'Ocean Adventure',
+  occasion: 'Birthday Party',
+  targetAudience: 'Children',
+  difficulty: 'beginner',
+};
+
+// 2. Generate game configuration
+const gameConfig = await gameGeneratorService.generateGame(criteria);
+
+// 3. Create project from generated config
+const project = await projectService.createProject(
+  gameConfig.name,
+  gameConfig.description,
+  'game',
+  template.engine,
+  gameConfig.templateId,
+  gameConfig.artStyle
+);
+
+// Done! Your themed game is ready to customize
+```
+
+### Option 2: Start from Template
 
 ```typescript
 import { templateLibrary } from './services/TemplateLibrary';
