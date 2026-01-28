@@ -8,6 +8,7 @@ import ProjectListScreen from '../screens/ProjectListScreen';
 import ProjectEditorScreen from '../screens/ProjectEditorScreen';
 import TemplateSelectorScreen from '../screens/TemplateSelectorScreen';
 import TemplatePreviewScreen from '../screens/TemplatePreviewScreen';
+import GameGeneratorScreen from '../screens/GameGeneratorScreen';
 import GenieAssistantScreen from '../screens/GenieAssistantScreen';
 import AssetLibraryScreen from '../screens/AssetLibraryScreen';
 import MarketingDashboardScreen from '../screens/MarketingDashboardScreen';
@@ -75,6 +76,11 @@ export default function AppNavigator() {
       <Stack.Screen 
         name="MainTabs" 
         component={MainTabs} 
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GameGenerator" 
+        component={GameGeneratorScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen 
