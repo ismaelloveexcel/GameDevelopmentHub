@@ -54,7 +54,7 @@ export default function GameGeneratorScreen() {
   
   const handlePopularThemeSelect = (themeName: string) => {
     setThemeInput(themeName);
-    setOccasion(themeName);
+    // Don't set occasion automatically - let user customize it
   };
   
   const handleGenerate = async () => {
@@ -121,7 +121,11 @@ export default function GameGeneratorScreen() {
         ]
       );
     } catch (error) {
-      Alert.alert('Error', 'Failed to generate game. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      Alert.alert(
+        'Generation Failed', 
+        `Failed to generate game: ${errorMessage}. Please check your inputs and try again.`
+      );
       console.error('Generation error:', error);
     } finally {
       setIsGenerating(false);
@@ -320,7 +324,7 @@ export default function GameGeneratorScreen() {
                   borderWidth: 2,
                 },
               ]}
-              onPress={() => setSelectedDifficulty(diff as any)}
+              onPress={() => setSelectedDifficulty(diff as 'beginner' | 'intermediate' | 'advanced')}
             >
               <Text style={[
                 styles.optionText, 
@@ -358,7 +362,7 @@ export default function GameGeneratorScreen() {
         <TouchableOpacity
           style={[styles.generateButton, { backgroundColor: theme.colors.primary }]}
           onPress={handleGenerate}
-          disabled={isGenerating || !theme_input}
+          disabled={isGenerating || !theme_input.trim()}
         >
           {isGenerating ? (
             <ActivityIndicator color="#ffffff" />

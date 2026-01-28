@@ -6,6 +6,15 @@ import { artStyleService } from './ArtStyleService';
  * Game Generator Service
  * Generates themed games based on user criteria for special occasions and situations
  */
+
+// Scoring weights for template selection
+const SCORE_WEIGHTS = {
+  KEYWORD_MATCH: 2,        // Score for matching theme keywords in template
+  OCCASION_MATCH: 5,       // Score for matching occasion to template
+  AUDIENCE_CATEGORY: 3,    // Score for matching audience to category
+  DIFFICULTY_MATCH: 2,     // Score for matching difficulty preference
+};
+
 class GameGeneratorService {
   /**
    * Generate a game configuration based on user criteria
@@ -80,7 +89,7 @@ class GameGeneratorService {
     const templateText = `${template.name} ${template.description} ${template.features.join(' ')}`.toLowerCase();
     
     themeKeywords.forEach(keyword => {
-      if (templateText.includes(keyword)) score += 2;
+      if (templateText.includes(keyword)) score += SCORE_WEIGHTS.KEYWORD_MATCH;
     });
     
     // Match occasion
@@ -96,7 +105,7 @@ class GameGeneratorService {
       
       const occasionKey = criteria.occasion.toLowerCase();
       if (occasionMap[occasionKey] && occasionMap[occasionKey].includes(template.id)) {
-        score += 5;
+        score += SCORE_WEIGHTS.OCCASION_MATCH;
       }
     }
     
@@ -104,10 +113,10 @@ class GameGeneratorService {
     if (criteria.targetAudience) {
       const audience = criteria.targetAudience.toLowerCase();
       if (audience.includes('child') || audience.includes('kid')) {
-        if (['puzzle', 'educational', 'story'].includes(template.category)) score += 3;
-        if (template.difficulty === 'beginner') score += 2;
+        if (['puzzle', 'educational', 'story'].includes(template.category)) score += SCORE_WEIGHTS.AUDIENCE_CATEGORY;
+        if (template.difficulty === 'beginner') score += SCORE_WEIGHTS.DIFFICULTY_MATCH;
       } else if (audience.includes('adult')) {
-        if (['strategy', 'puzzle', 'vr'].includes(template.category)) score += 3;
+        if (['strategy', 'puzzle', 'vr'].includes(template.category)) score += SCORE_WEIGHTS.AUDIENCE_CATEGORY;
       }
     }
     
@@ -183,6 +192,7 @@ class GameGeneratorService {
   
   /**
    * Generate a color palette based on theme and art style
+   * Adjusts base art style colors to match theme-specific requirements
    */
   private generateColorPalette(theme: string, artStyle: ArtStyle) {
     // Get base palette from art style
@@ -198,27 +208,33 @@ class GameGeneratorService {
       };
     }
     
+    // Create a new palette based on the base style
     const palette = { ...baseStyle.colors };
     const themeLower = theme.toLowerCase();
     
-    // Adjust colors based on theme keywords
+    // Adjust colors based on theme keywords to match the theme's feeling
     if (themeLower.includes('ocean') || themeLower.includes('sea') || themeLower.includes('water')) {
+      // Cool blue tones for water themes
       palette.primary = '#0ea5e9';
       palette.secondary = '#06b6d4';
       palette.accent = '#22d3ee';
     } else if (themeLower.includes('forest') || themeLower.includes('nature') || themeLower.includes('green')) {
+      // Natural green tones for nature themes
       palette.primary = '#10b981';
       palette.secondary = '#059669';
       palette.accent = '#84cc16';
     } else if (themeLower.includes('fire') || themeLower.includes('hot') || themeLower.includes('summer')) {
+      // Warm red/orange tones for fire and summer themes
       palette.primary = '#ef4444';
       palette.secondary = '#f97316';
       palette.accent = '#fbbf24';
     } else if (themeLower.includes('space') || themeLower.includes('cosmic') || themeLower.includes('galaxy')) {
+      // Purple/blue cosmic tones for space themes
       palette.primary = '#8b5cf6';
       palette.secondary = '#6366f1';
       palette.accent = '#ec4899';
     } else if (themeLower.includes('winter') || themeLower.includes('ice') || themeLower.includes('snow')) {
+      // Cool light blue tones for winter themes
       palette.primary = '#38bdf8';
       palette.secondary = '#60a5fa';
       palette.accent = '#e0f2fe';
@@ -277,9 +293,7 @@ class GameGeneratorService {
     
     if (!criteria.theme || criteria.theme.trim().length === 0) {
       errors.push('Theme is required');
-    }
-    
-    if (criteria.theme && criteria.theme.trim().length < 3) {
+    } else if (criteria.theme.trim().length < 3) {
       errors.push('Theme must be at least 3 characters');
     }
     

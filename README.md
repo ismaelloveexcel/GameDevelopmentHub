@@ -162,6 +162,7 @@ gameforge-mobile/
 ```typescript
 import { gameGeneratorService } from './services/GameGeneratorService';
 import { projectService } from './services/ProjectService';
+import { templateLibrary } from './services/TemplateLibrary';
 
 // 1. Define your game criteria
 const criteria = {
@@ -174,7 +175,10 @@ const criteria = {
 // 2. Generate game configuration
 const gameConfig = await gameGeneratorService.generateGame(criteria);
 
-// 3. Create project from generated config
+// 3. Get the selected template
+const template = templateLibrary.getTemplateById(gameConfig.templateId);
+
+// 4. Create project from generated config
 const project = await projectService.createProject(
   gameConfig.name,
   gameConfig.description,
