@@ -16,6 +16,7 @@ export { rouletteService, RouletteService } from './RouletteService';
 export { wildCardService, WildCardService } from './WildCardService';
 export { shareService, ShareService } from './ShareService';
 export { aiService, AIService } from './AIService';
+export { assetGeneratorService, AssetGeneratorService } from './AssetGeneratorService';
 
 // Marketing
 export { marketingService } from './MarketingService';

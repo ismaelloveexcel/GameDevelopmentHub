@@ -25,6 +25,7 @@ export type RootStackParamList = {
   EmojiInput: undefined;
   GiftCreation: undefined;
   GiftReceived: { giftId?: string; shortCode?: string };
+  BrandingStudio: undefined;
 };
 
 // Project types
