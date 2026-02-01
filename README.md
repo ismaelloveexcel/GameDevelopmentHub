@@ -2,6 +2,14 @@
 
 > AI-powered game creation platform - Create professional mobile games, VR experiences, and educational content with **zero coding required**.
 
+## ⚠️ Important: Repository Organization
+
+**This repository (GameDevelopmentHub)** serves as a documentation and project coordination hub. For active development and code contributions, please use the **[gameforge-mobile](https://github.com/ismaelloveexcel/gameforge-mobile)** repository.
+
+📖 **See [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) for details on repository organization and where to submit your contributions.**
+
+> **Note on [PR #27](https://github.com/ismaelloveexcel/GameDevelopmentHub/pull/27)**: The "Overall project understanding" PR (#27) contains GiftForge development code that should be submitted to the [gameforge-mobile](https://github.com/ismaelloveexcel/gameforge-mobile) repository instead. See [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) for more information.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![React Native](https://img.shields.io/badge/React%20Native-0.72-61DAFB.svg)](https://reactnative.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1-blue.svg)](https://www.typescriptlang.org/)

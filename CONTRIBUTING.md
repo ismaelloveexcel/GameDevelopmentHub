@@ -2,6 +2,17 @@
 
 Thank you for your interest in contributing to GameForge Mobile! This document provides guidelines for contributing to the project.
 
+## ⚠️ Important: Choose the Right Repository
+
+Before contributing, please note:
+
+- **[gameforge-mobile](https://github.com/ismaelloveexcel/gameforge-mobile)**: For code contributions, features, bug fixes, and active development
+- **[GameDevelopmentHub](https://github.com/ismaelloveexcel/GameDevelopmentHub)**: For documentation, guides, and project coordination
+
+Documentation-only issues and pull requests should be opened in **GameDevelopmentHub**, while code-related issues and pull requests belong in **gameforge-mobile**.
+
+📖 **See [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) for complete details on where to submit your contributions.**
+
 ## Code of Conduct
 
 Please be respectful, inclusive, and professional in all interactions.
