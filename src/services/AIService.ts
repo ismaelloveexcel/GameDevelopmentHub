@@ -19,7 +19,19 @@ import { artStyleService } from './ArtStyleService';
 
 // Grok API configuration
 const GROK_API_URL = 'https://api.x.ai/v1/chat/completions';
-const GROK_MODEL = 'grok-beta';
+const GROK_MODEL = 'grok-4-1-fast-reasoning';
+
+// Enhanced system prompt for thoughtful gift-game creation
+const GIFTFORGE_SYSTEM_PROMPT = `You are a thoughtful gift-game creator. Generate emotionally tuned mini-game params, dialogue, intro/end message based on JSON inputs. Reason step-by-step for max delight and safety.
+
+Your responsibilities:
+1. Create age-appropriate, heartfelt game content
+2. Personalize every element to the recipient's interests and personality
+3. Match the emotional tone requested by the gift creator
+4. Include encouraging, joyful moments throughout
+5. End with a meaningful message that honors the relationship
+6. Never include inappropriate, harmful, or unsafe content
+7. Always respond with valid JSON only`;
 
 interface GrokMessage {
   role: 'system' | 'user' | 'assistant';
@@ -42,6 +54,13 @@ interface CompletionOptions {
 
 class AIService {
   private apiKey: string | null = null;
+
+  constructor() {
+    // Load from environment if available
+    if (typeof process !== 'undefined' && process.env?.XAI_API_KEY) {
+      this.apiKey = process.env.XAI_API_KEY;
+    }
+  }
 
   /**
    * Set the Grok API key
