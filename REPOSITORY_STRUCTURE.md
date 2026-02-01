@@ -12,7 +12,7 @@ This document clarifies the relationship between related repositories and their 
 - **Contains**: Core application code, GiftForge features, and active development
 - **Target for**: Feature PRs, bug fixes, and GiftForge pivot development
 
-### Documentation/Hub Repository  
+### Documentation/Hub Repository
 **[GameDevelopmentHub](https://github.com/ismaelloveexcel/GameDevelopmentHub)**
 - **Purpose**: Documentation, guides, and project coordination
 - **Contains**: Deployment guides, setup instructions, and general documentation
@@ -20,9 +20,9 @@ This document clarifies the relationship between related repositories and their 
 
 ## Important Notes
 
-### PR #27 - Overall Project Understanding
+### [PR #27 - Overall Project Understanding](https://github.com/ismaelloveexcel/GameDevelopmentHub/pull/27)
 
-**Issue**: PR #27 "Overall project understanding" was created in the GameDevelopmentHub repository but contains content intended for the gameforge-mobile repository.
+**Issue**: [PR #27](https://github.com/ismaelloveexcel/GameDevelopmentHub/pull/27) "Overall project understanding" was created in the GameDevelopmentHub repository but contains content intended for the gameforge-mobile repository.
 
 **Resolution**: This PR includes:
 - Specialized GitHub Copilot agents for GiftForge development
