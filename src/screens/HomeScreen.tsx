@@ -54,21 +54,21 @@ export default function HomeScreen() {
 
   const quickActions = [
     {
-      icon: 'plus-circle',
-      title: 'New Project',
-      color: theme.colors.primary,
-      onPress: () => navigation.navigate('Templates'),
+      icon: 'gift',
+      title: 'Create Gift',
+      color: '#e74c3c',
+      onPress: () => navigation.navigate('GiftCreation'),
     },
     {
-      icon: 'folder-open',
-      title: 'My Projects',
-      color: theme.colors.secondary,
-      onPress: () => navigation.navigate('Projects'),
+      icon: 'slot-machine',
+      title: 'Roulette',
+      color: '#f39c12',
+      onPress: () => navigation.navigate('Roulette'),
     },
     {
-      icon: 'download',
+      icon: 'view-grid',
       title: 'Templates',
-      color: theme.colors.accent,
+      color: theme.colors.primary,
       onPress: () => navigation.navigate('Templates'),
     },
   ];

@@ -22,6 +22,8 @@ export type RootStackParamList = {
     recipientName: string;
     mode?: 'standard' | 'roulette' | 'blind_date';
   };
+  EmojiInput: undefined;
+  GiftCreation: undefined;
 };
 
 // Project types
