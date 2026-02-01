@@ -14,6 +14,7 @@ import MarketingDashboardScreen from '../screens/MarketingDashboardScreen';
 import VREditorScreen from '../screens/VREditorScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import PublishScreen from '../screens/PublishScreen';
+import RouletteScreen from '../screens/RouletteScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -111,6 +112,11 @@ export default function AppNavigator() {
         name="Settings" 
         component={SettingsScreen}
         options={{ title: 'Settings' }}
+      />
+      <Stack.Screen 
+        name="Roulette" 
+        component={RouletteScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -15,6 +15,7 @@ export type RootStackParamList = {
   VREditor: { projectId: string };
   Settings: undefined;
   Publish: { projectId: string };
+  Roulette: undefined;
 };
 
 // Project types
@@ -262,3 +263,6 @@ export interface VRController {
 
 // CrewAI Agent types
 export * from './agents';
+
+// GiftForge types
+export * from './gift';

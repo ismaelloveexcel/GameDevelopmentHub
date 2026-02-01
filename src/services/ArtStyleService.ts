@@ -324,6 +324,56 @@ class ArtStyleService {
 
     return recommendations[styleId] || [];
   }
+
+  /**
+   * Get a random art style
+   */
+  getRandomStyle(): ArtStyleConfig {
+    const randomIndex = Math.floor(Math.random() * this.styles.length);
+    return this.styles[randomIndex];
+  }
+
+  /**
+   * Get random style excluding specific IDs
+   */
+  getRandomStyleExcluding(excludeIds: ArtStyle[]): ArtStyleConfig {
+    const available = this.styles.filter(s => !excludeIds.includes(s.id));
+    if (available.length === 0) {
+      return this.getRandomStyle();
+    }
+    const randomIndex = Math.floor(Math.random() * available.length);
+    return available[randomIndex];
+  }
+
+  /**
+   * Get total style count
+   */
+  getStyleCount(): number {
+    return this.styles.length;
+  }
+
+  /**
+   * Check if a style is premium (for monetization)
+   * Currently: lowpoly, cyberpunk, watercolor are premium
+   */
+  isPremiumStyle(styleId: ArtStyle): boolean {
+    const premiumStyles: ArtStyle[] = ['lowpoly', 'cyberpunk', 'watercolor'];
+    return premiumStyles.includes(styleId);
+  }
+
+  /**
+   * Get free styles only
+   */
+  getFreeStyles(): ArtStyleConfig[] {
+    return this.styles.filter(s => !this.isPremiumStyle(s.id));
+  }
+
+  /**
+   * Get premium styles only
+   */
+  getPremiumStyles(): ArtStyleConfig[] {
+    return this.styles.filter(s => this.isPremiumStyle(s.id));
+  }
 }
 
 export const artStyleService = new ArtStyleService();
