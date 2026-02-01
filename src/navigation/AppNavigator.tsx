@@ -18,6 +18,7 @@ import RouletteScreen from '../screens/RouletteScreen';
 import GiftWrapScreen from '../screens/GiftWrapScreen';
 import EmojiInputScreen from '../screens/EmojiInputScreen';
 import GiftCreationScreen from '../screens/GiftCreationScreen';
+import GiftReceivedScreen from '../screens/GiftReceivedScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -134,6 +135,11 @@ export default function AppNavigator() {
       <Stack.Screen 
         name="GiftCreation" 
         component={GiftCreationScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GiftReceived" 
+        component={GiftReceivedScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
