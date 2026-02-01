@@ -20,6 +20,13 @@ export default function HomeScreen() {
 
   const features = [
     {
+      icon: 'slot-machine',
+      title: 'Game Roulette',
+      description: 'Spin for a random unique combo!',
+      onPress: () => navigation.navigate('Roulette'),
+      highlight: true,
+    },
+    {
       icon: 'creation',
       title: 'Create Games',
       description: '15 ready-to-use game templates',

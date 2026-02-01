@@ -16,6 +16,12 @@ export type RootStackParamList = {
   Settings: undefined;
   Publish: { projectId: string };
   Roulette: undefined;
+  GiftWrap: { 
+    templateId: string; 
+    artStyleId: string; 
+    recipientName: string;
+    mode?: 'standard' | 'roulette' | 'blind_date';
+  };
 };
 
 // Project types

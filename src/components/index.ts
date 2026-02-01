@@ -9,3 +9,6 @@ export { StyleCarousel } from './StyleCarousel';
 
 // Roulette
 export { RouletteWheel } from './RouletteWheel';
+
+// Emoji input
+export { EmojiPicker } from './EmojiPicker';

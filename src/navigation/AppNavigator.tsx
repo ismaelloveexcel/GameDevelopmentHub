@@ -15,6 +15,7 @@ import VREditorScreen from '../screens/VREditorScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import PublishScreen from '../screens/PublishScreen';
 import RouletteScreen from '../screens/RouletteScreen';
+import GiftWrapScreen from '../screens/GiftWrapScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -116,6 +117,11 @@ export default function AppNavigator() {
       <Stack.Screen 
         name="Roulette" 
         component={RouletteScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GiftWrap" 
+        component={GiftWrapScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
