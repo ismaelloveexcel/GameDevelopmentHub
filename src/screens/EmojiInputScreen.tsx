@@ -20,8 +20,9 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTheme } from '../contexts/ThemeContext';
 import { EmojiPicker } from '../components/EmojiPicker';
-import { EmojiStory } from '../types/gift';
+import { EmojiStory, EmojiInterpretation } from '../types/gift';
 import { RootStackParamList } from '../types';
+import { aiService } from '../services/AIService';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -52,40 +53,24 @@ export default function EmojiInputScreen() {
 
     setIsInterpreting(true);
 
-    // Simulate AI interpretation (in production, call AIService)
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Use Grok AI to interpret emojis
+      const interpretation: EmojiInterpretation = await aiService.interpretEmojis(emojiStory);
+      
+      console.log('AI Interpretation:', interpretation);
+      console.log(`Suggested: ${interpretation.suggestedTemplateId} in ${interpretation.suggestedStyleId} style`);
+      console.log(`Description: ${interpretation.description}`);
 
-    // Generate a simple interpretation
-    const interpretation = generateInterpretation(emojiStory);
-    console.log('Interpretation:', interpretation);
-
-    setIsInterpreting(false);
-
-    // Navigate to template selection or roulette
-    navigation.navigate('Roulette');
-  };
-
-  // Simple local interpretation (replace with AI in production)
-  const generateInterpretation = (story: EmojiStory): string => {
-    const traits: string[] = [];
-    
-    story.personality.forEach(emoji => {
-      const mapping: Record<string, string> = {
-        '🎨': 'creative', '🤓': 'intellectual', '💪': 'strong',
-        '🧘': 'calm', '🤪': 'fun-loving', '😎': 'cool',
-      };
-      if (mapping[emoji]) traits.push(mapping[emoji]);
-    });
-
-    story.hobbies.forEach(emoji => {
-      const mapping: Record<string, string> = {
-        '☕': 'coffee lover', '📚': 'bookworm', '🎮': 'gamer',
-        '🎵': 'music fan', '⚽': 'sports enthusiast', '🍳': 'foodie',
-      };
-      if (mapping[emoji]) traits.push(mapping[emoji]);
-    });
-
-    return `${recipientName} seems like a ${traits.slice(0, 3).join(', ')} person!`;
+      // Navigate to roulette with the interpretation context
+      // In a full implementation, we'd pass this data
+      navigation.navigate('Roulette');
+    } catch (error) {
+      console.error('Interpretation failed:', error);
+      // Still navigate even if AI fails
+      navigation.navigate('Roulette');
+    } finally {
+      setIsInterpreting(false);
+    }
   };
 
   return (

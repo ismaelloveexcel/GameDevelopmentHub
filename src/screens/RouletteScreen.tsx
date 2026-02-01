@@ -43,13 +43,13 @@ export default function RouletteScreen() {
   const handleCreateGame = () => {
     if (!lastResult) return;
 
-    // Navigate to template preview with the selected combo
-    navigation.navigate('TemplatePreview', {
+    // Navigate to gift wrap with the roulette result
+    navigation.navigate('GiftWrap', {
       templateId: lastResult.templateId,
+      artStyleId: lastResult.artStyleId,
+      recipientName: 'Friend', // Would come from previous screen in full flow
+      mode: 'roulette',
     });
-
-    // TODO: Pass the full roulette result to customize the game
-    // This would include artStyleId and wildCard
   };
 
   const handleShare = () => {
