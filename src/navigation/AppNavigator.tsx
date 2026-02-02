@@ -14,6 +14,12 @@ import MarketingDashboardScreen from '../screens/MarketingDashboardScreen';
 import VREditorScreen from '../screens/VREditorScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import PublishScreen from '../screens/PublishScreen';
+import RouletteScreen from '../screens/RouletteScreen';
+import GiftWrapScreen from '../screens/GiftWrapScreen';
+import EmojiInputScreen from '../screens/EmojiInputScreen';
+import GiftCreationScreen from '../screens/GiftCreationScreen';
+import GiftReceivedScreen from '../screens/GiftReceivedScreen';
+import BrandingStudioScreen from '../screens/BrandingStudioScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -111,6 +117,36 @@ export default function AppNavigator() {
         name="Settings" 
         component={SettingsScreen}
         options={{ title: 'Settings' }}
+      />
+      <Stack.Screen 
+        name="Roulette" 
+        component={RouletteScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GiftWrap" 
+        component={GiftWrapScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="EmojiInput" 
+        component={EmojiInputScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GiftCreation" 
+        component={GiftCreationScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="GiftReceived" 
+        component={GiftReceivedScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="BrandingStudio" 
+        component={BrandingStudioScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

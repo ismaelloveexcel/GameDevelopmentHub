@@ -55,6 +55,24 @@ export default function TemplateSelectorScreen() {
         </Text>
       </View>
 
+      {/* Quick Actions */}
+      <View style={styles.quickActionsRow}>
+        <TouchableOpacity
+          style={[styles.quickActionBtn, { backgroundColor: '#e74c3c' }]}
+          onPress={() => navigation.navigate('GiftCreation')}
+        >
+          <Icon name="gift" size={20} color="#fff" />
+          <Text style={styles.quickActionText}>Create Gift</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.quickActionBtn, { backgroundColor: '#f39c12' }]}
+          onPress={() => navigation.navigate('Roulette')}
+        >
+          <Icon name="slot-machine" size={20} color="#fff" />
+          <Text style={styles.quickActionText}>Roulette</Text>
+        </TouchableOpacity>
+      </View>
+
       {/* Category Filter */}
       <ScrollView
         horizontal
@@ -178,6 +196,26 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
+  },
+  quickActionsRow: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    gap: 12,
+  },
+  quickActionBtn: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 12,
+    borderRadius: 12,
+    gap: 8,
+  },
+  quickActionText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
   },
   categoryScroll: {
     maxHeight: 50,

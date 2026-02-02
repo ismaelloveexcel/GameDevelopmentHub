@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <defs>
+    <!-- Neon glow filters -->
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Gradient for text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFEB3B"/>
+      <stop offset="30%" style="stop-color:#C6FF00"/>
+      <stop offset="70%" style="stop-color:#00E5FF"/>
+      <stop offset="100%" style="stop-color:#00BFA5"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background (optional - can be removed for transparent) -->
+  <rect width="400" height="450" fill="#1a1a2e" rx="20"/>
+  
+  <!-- Controller cable -->
+  <path d="M200 60 Q200 30, 230 25 Q270 20, 280 40 Q295 70, 260 80" 
+        stroke="#00E5FF" stroke-width="6" fill="none" 
+        stroke-linecap="round" filter="url(#glow-cyan)"/>
+  
+  <!-- Controller outer glow -->
+  <ellipse cx="200" cy="180" rx="95" ry="70" 
+           fill="none" stroke="#7B1FA2" stroke-width="20" 
+           opacity="0.3" filter="url(#glow-purple)"/>
+  
+  <!-- Controller body outline (purple glow) -->
+  <path d="M105 150 
+           Q105 120, 135 115 
+           L175 115 
+           Q185 100, 200 95 
+           Q215 100, 225 115 
+           L265 115 
+           Q295 120, 295 150 
+           L295 180 
+           Q295 230, 260 245 
+           L240 255 
+           Q220 265, 200 265 
+           Q180 265, 160 255 
+           L140 245 
+           Q105 230, 105 180 Z" 
+        fill="none" stroke="#7B1FA2" stroke-width="8" 
+        filter="url(#glow-purple)"/>
+  
+  <!-- Controller body (pink neon) -->
+  <path d="M105 150 
+           Q105 120, 135 115 
+           L175 115 
+           Q185 100, 200 95 
+           Q215 100, 225 115 
+           L265 115 
+           Q295 120, 295 150 
+           L295 180 
+           Q295 230, 260 245 
+           L240 255 
+           Q220 265, 200 265 
+           Q180 265, 160 255 
+           L140 245 
+           Q105 230, 105 180 Z" 
+        fill="none" stroke="#FF4081" stroke-width="4" 
+        filter="url(#glow-pink)"/>
+  
+  <!-- Connection piece -->
+  <rect x="182" y="85" width="36" height="25" rx="4" 
+        fill="none" stroke="#00E5FF" stroke-width="3" 
+        filter="url(#glow-cyan)"/>
+  
+  <!-- D-pad -->
+  <g filter="url(#glow-cyan)">
+    <rect x="130" y="160" width="40" height="12" rx="2" fill="#00E5FF"/>
+    <rect x="144" y="146" width="12" height="40" rx="2" fill="#00E5FF"/>
+  </g>
+  
+  <!-- Action buttons -->
+  <g filter="url(#glow-pink)">
+    <circle cx="250" cy="145" r="8" fill="none" stroke="#FFEB3B" stroke-width="3"/>
+    <circle cx="270" cy="165" r="8" fill="none" stroke="#FF4081" stroke-width="3"/>
+    <circle cx="250" cy="185" r="8" fill="none" stroke="#00E5FF" stroke-width="3"/>
+    <circle cx="230" cy="165" r="8" fill="none" stroke="#C6FF00" stroke-width="3"/>
+  </g>
+  
+  <!-- Center buttons -->
+  <g filter="url(#glow-cyan)">
+    <rect x="175" y="150" width="20" height="10" rx="3" 
+          fill="none" stroke="#888" stroke-width="2"/>
+    <rect x="205" y="150" width="20" height="10" rx="3" 
+          fill="none" stroke="#888" stroke-width="2"/>
+  </g>
+  
+  <!-- Analog sticks -->
+  <g filter="url(#glow-pink)">
+    <circle cx="160" cy="210" r="12" fill="none" stroke="#FF4081" stroke-width="3"/>
+    <circle cx="160" cy="210" r="5" fill="#FF4081"/>
+    <circle cx="240" cy="210" r="12" fill="none" stroke="#FF4081" stroke-width="3"/>
+    <circle cx="240" cy="210" r="5" fill="#FF4081"/>
+  </g>
+  
+  <!-- Gift bow on controller -->
+  <g transform="translate(200, 130)" filter="url(#glow-pink)">
+    <path d="M-15 0 Q-20 -10, -10 -12 Q0 -15, 0 -5 Q0 -15, 10 -12 Q20 -10, 15 0" 
+          fill="none" stroke="#FF4081" stroke-width="3"/>
+    <circle cx="0" cy="0" r="5" fill="#FF4081"/>
+  </g>
+  
+  <!-- PLAYGIFT Text - Pixel Style -->
+  <g transform="translate(40, 320)">
+    <!-- P -->
+    <g fill="url(#textGradient)">
+      <rect x="0" y="0" width="8" height="40"/>
+      <rect x="8" y="0" width="16" height="8"/>
+      <rect x="24" y="8" width="8" height="8"/>
+      <rect x="8" y="16" width="16" height="8"/>
+    </g>
+    
+    <!-- L -->
+    <g fill="url(#textGradient)">
+      <rect x="40" y="0" width="8" height="40"/>
+      <rect x="48" y="32" width="16" height="8"/>
+    </g>
+    
+    <!-- A -->
+    <g fill="url(#textGradient)">
+      <rect x="72" y="8" width="8" height="32"/>
+      <rect x="80" y="0" width="16" height="8"/>
+      <rect x="96" y="8" width="8" height="32"/>
+      <rect x="80" y="20" width="16" height="8"/>
+    </g>
+    
+    <!-- Y -->
+    <g fill="url(#textGradient)">
+      <rect x="112" y="0" width="8" height="16"/>
+      <rect x="128" y="0" width="8" height="16"/>
+      <rect x="120" y="16" width="8" height="24"/>
+    </g>
+    
+    <!-- G -->
+    <g fill="url(#textGradient)">
+      <rect x="148" y="0" width="24" height="8"/>
+      <rect x="144" y="8" width="8" height="24"/>
+      <rect x="148" y="32" width="24" height="8"/>
+      <rect x="168" y="20" width="8" height="12"/>
+      <rect x="160" y="20" width="8" height="8"/>
+    </g>
+    
+    <!-- I -->
+    <g fill="url(#textGradient)">
+      <rect x="184" y="0" width="24" height="8"/>
+      <rect x="192" y="8" width="8" height="24"/>
+      <rect x="184" y="32" width="24" height="8"/>
+    </g>
+    
+    <!-- F -->
+    <g fill="url(#textGradient)">
+      <rect x="216" y="0" width="8" height="40"/>
+      <rect x="224" y="0" width="16" height="8"/>
+      <rect x="224" y="16" width="12" height="8"/>
+    </g>
+    
+    <!-- T -->
+    <g fill="url(#textGradient)">
+      <rect x="248" y="0" width="32" height="8"/>
+      <rect x="260" y="8" width="8" height="32"/>
+    </g>
+  </g>
+  
+  <!-- Tagline -->
+  <text x="200" y="400" text-anchor="middle" 
+        font-family="Arial, sans-serif" font-size="14" 
+        fill="#888" letter-spacing="4">
+    PERSONALIZED GAME GIFTS
+  </text>
+</svg>

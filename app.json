@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GameForge Mobile",
-    "slug": "gameforge-mobile",
+    "name": "PlayGift",
+    "slug": "playgift",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,14 +16,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gameforge.mobile"
+      "bundleIdentifier": "com.playgift.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a2e"
       },
-      "package": "com.gameforge.mobile"
+      "package": "com.playgift.app"
     },
     "web": {
       "favicon": "./assets/favicon.png",

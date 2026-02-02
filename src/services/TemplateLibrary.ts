@@ -471,6 +471,56 @@ class TemplateLibrary {
   getTemplatesByDifficulty(difficulty: 'beginner' | 'intermediate' | 'advanced'): GameTemplate[] {
     return this.templates.filter((t) => t.difficulty === difficulty);
   }
+
+  /**
+   * Get a random template
+   */
+  getRandomTemplate(): GameTemplate {
+    const randomIndex = Math.floor(Math.random() * this.templates.length);
+    return this.templates[randomIndex];
+  }
+
+  /**
+   * Get a random template from specific categories
+   */
+  getRandomTemplateFromCategories(categories: string[]): GameTemplate {
+    const filtered = this.templates.filter(t => categories.includes(t.category));
+    if (filtered.length === 0) {
+      return this.getRandomTemplate();
+    }
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    return filtered[randomIndex];
+  }
+
+  /**
+   * Get a random template by engine
+   */
+  getRandomTemplateByEngine(engine: 'pixi' | 'babylon' | 'aframe'): GameTemplate {
+    const filtered = this.getTemplatesByEngine(engine);
+    if (filtered.length === 0) {
+      return this.getRandomTemplate();
+    }
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    return filtered[randomIndex];
+  }
+
+  /**
+   * Get total template count
+   */
+  getTemplateCount(): number {
+    return this.templates.length;
+  }
+
+  /**
+   * Get count by engine
+   */
+  getCountByEngine(): Record<string, number> {
+    return {
+      pixi: this.getTemplatesByEngine('pixi').length,
+      babylon: this.getTemplatesByEngine('babylon').length,
+      aframe: this.getTemplatesByEngine('aframe').length,
+    };
+  }
 }
 
 export const templateLibrary = new TemplateLibrary();
