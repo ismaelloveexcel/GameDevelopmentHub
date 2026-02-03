@@ -12,6 +12,13 @@ npm-debug.*
 web-build/
 dist/
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
 # MacOS
 .DS_Store
 
