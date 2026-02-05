@@ -8,6 +8,7 @@ export type RootStackParamList = {
   Templates: undefined;
   TemplateSelector: undefined;
   TemplatePreview: { templateId: string };
+  GameGenerator: undefined;
   Genie: undefined;
   GenieAssistant: { projectId?: string };
   AssetLibrary: { projectId?: string };
@@ -258,6 +259,31 @@ export interface VRController {
   position: { x: number; y: number; z: number };
   rotation: { x: number; y: number; z: number };
   buttons: Record<string, boolean>;
+}
+
+// Game Generator types
+export interface GameGeneratorCriteria {
+  theme: string;
+  occasion?: string;
+  targetAudience?: string;
+  gameType?: TemplateCategory;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  features?: string[];
+  artStyle?: ArtStyle;
+  customRequirements?: string;
+}
+
+export interface GeneratedGameConfig {
+  name: string;
+  description: string;
+  templateId: string;
+  artStyle: ArtStyle;
+  customizations: {
+    theme: string;
+    occasion?: string;
+    colors?: ColorPalette;
+    features?: string[];
+  };
 }
 
 // CrewAI Agent types

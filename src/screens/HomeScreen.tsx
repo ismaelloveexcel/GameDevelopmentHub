@@ -20,6 +20,12 @@ export default function HomeScreen() {
 
   const features = [
     {
+      icon: 'auto-fix',
+      title: 'Generate Themed Games',
+      description: 'AI-powered game generation for occasions',
+      onPress: () => navigation.navigate('GameGenerator'),
+    },
+    {
       icon: 'creation',
       title: 'Create Games',
       description: '15 ready-to-use game templates',
@@ -47,6 +53,12 @@ export default function HomeScreen() {
 
   const quickActions = [
     {
+      icon: 'auto-fix',
+      title: 'Generate Game',
+      color: theme.colors.accent,
+      onPress: () => navigation.navigate('GameGenerator'),
+    },
+    {
       icon: 'plus-circle',
       title: 'New Project',
       color: theme.colors.primary,
@@ -57,12 +69,6 @@ export default function HomeScreen() {
       title: 'My Projects',
       color: theme.colors.secondary,
       onPress: () => navigation.navigate('Projects'),
-    },
-    {
-      icon: 'download',
-      title: 'Templates',
-      color: theme.colors.accent,
-      onPress: () => navigation.navigate('Templates'),
     },
   ];
 
