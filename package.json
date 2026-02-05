@@ -16,7 +16,10 @@
     "build:android": "echo 'Deprecated: Use EAS Build instead - npm run eas:build:android'",
     "eas:build:android": "eas build --platform android --profile production",
     "eas:build:ios": "eas build --platform ios --profile production",
-    "eas:preview": "eas build --platform android --profile preview"
+    "eas:preview": "eas build --platform android --profile preview",
+    "deploy:check": "node scripts/deployment-check.js",
+    "deploy:validate": "npm run lint && npm test && npm run deploy:check",
+    "deploy:checklist": "node scripts/pre-deploy-checklist.js"
   },
   "keywords": [
     "game",
