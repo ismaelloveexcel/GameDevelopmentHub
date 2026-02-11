@@ -39,7 +39,7 @@
     "@react-three/fiber": "^8.15.11",
     "aframe": "^1.5.0",
     "aframe-react": "^4.4.0",
-    "axios": "^1.6.2",
+    "axios": "^1.13.5",
     "babylonjs": "^6.33.1",
     "babylonjs-loaders": "^6.33.1",
     "date-fns": "^2.30.0",
