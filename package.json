@@ -43,7 +43,7 @@
     "babylonjs": "^6.33.1",
     "babylonjs-loaders": "^6.33.1",
     "date-fns": "^2.30.0",
-    "expo": "~49.0.15",
+    "expo": "~55.0.4",
     "expo-build-properties": "~1.0.10",
     "expo-gl": "~13.0.1",
     "expo-status-bar": "~1.6.0",
